@@ -1,6 +1,8 @@
 # Jekyll-Bootstrap
 
-The quickest way to start and publish your Jekyll powered blog. 100% compatible with GitHub pages
+这是最快速的开始和发布你的基于Jekyll的博客的方式，完全兼容GitHub pages。
+
+>The quickest way to start and publish your Jekyll powered blog. 100% compatible with GitHub pages
 
 ## Usage
 

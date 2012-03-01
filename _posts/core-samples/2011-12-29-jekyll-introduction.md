@@ -154,33 +154,59 @@ Jekyll supports various configuration options that are fully outlined here:
 
 
 
+## Jekyll中的内容
 
-## Content in Jekyll
+Jekyll中的内容既不是post，也不是page。
+这些内容“项目”被插入到一个或着多个模板，用来创建最终输出的各个静态网页。
 
-Content in Jekyll is either a post or a page.
-These content "objects" get inserted into one or more templates to build the final output for its respective static-page.
+>## Content in Jekyll
+>
+>Content in Jekyll is either a post or a page.
+>These content "objects" get inserted into one or more templates to build the final output for its respective static-page.
 
-### Posts and Pages
+### Posts 和 Pages
 
-Both posts and pages should be written in markdown, textile, or HTML and may also contain Liquid templating syntax.
-Both posts and pages can have meta-data assigned on a per-page basis such as title, url path, as well as arbitrary custom meta-data.
+Posts和Pages都应该用markdown、textile或者HTML语法来书写，当然还可能包含Liquid模板语言。
+它们都可以有元数据，分配在每个页面的开始，诸如title、url path，甚至是任意的自定义元数据
 
-### Working With Posts
+>### Posts and Pages
+>
+>Both posts and pages should be written in markdown, textile, or HTML and may also contain Liquid templating syntax.
+>Both posts and pages can have meta-data assigned on a per-page basis such as title, url path, as well as arbitrary custom meta-data.
 
-**Creating a Post**   
-Posts are created by properly formatting a file and placing it the `_posts` folder.
+### Posts工作方式
 
-**Formatting**  
-A post must have a valid filename in the form `YEAR-MONTH-DATE-title.MARKUP` and be placed in the `_posts` directory. 
-If the data format is invalid Jekyll will not recognize the file as a post. The date and title are automatically parsed from the filename of the post file.
-Additionally, each file must have [YAML Front-Matter](https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter) prepended to its content.
-YAML Front-Matter is a valid YAML syntax specifying meta-data for the given file.
+**创建Post**   
+把格式正确的文件放到 `_posts` 文件夹中就ok了。
 
-**Order**  
-Ordering is an important part of Jekyll but it is hard to specify a custom ordering strategy.
-Only reverse chronological and chronological ordering is supported in Jekyll.
+**格式化**   
+一个post的名字必须遵从 `YEAR-MONTH-DATE-title.MARKUP` 格式，且位于 `_posts` 文件夹中。
+Jekyll会从文件名自动解析文件的日期和标题信息，如果文件名不合法，Jekyll就无法把这个文件识别为post。
+另外，每个文件的内容必须保证符合 [YAML Front-Matter](https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter)。
+YAML Front-Matter符合YAML语法，专门用来为文件指定元数据。
 
-Since the date is hard-coded into the filename format, to change the order, you must change the dates in the filenames.
+**排序**   
+排序是Jekyll的一个重要部分，但是很难为用户特别定制一个排序策略。
+Jekyll只支持按时间正序和反序排列。
+
+因为很难将文件名格式上的日期编程，所以要像改变顺序，只能修改文件名上的日期。
+
+>### Working With Posts
+>
+>**Creating a Post**   
+>Posts are created by properly formatting a file and placing it the `_posts` folder.
+>
+>**Formatting**  
+>A post must have a valid filename in the form `YEAR-MONTH-DATE-title.MARKUP` and be placed in the `_posts` directory. 
+>If the data format is invalid Jekyll will not recognize the file as a post. The date and title are automatically parsed from the filename of the post file.
+>Additionally, each file must have [YAML Front-Matter](https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter) prepended to its content.
+>YAML Front-Matter is a valid YAML syntax specifying meta-data for the given file.
+>
+>**Order**  
+>Ordering is an important part of Jekyll but it is hard to specify a custom ordering strategy.
+>Only reverse chronological and chronological ordering is supported in Jekyll.
+>
+>Since the date is hard-coded into the filename format, to change the order, you must change the dates in the filenames.
 
 **Tags**   
 Posts can have tags associated with them as part of their meta-data.
