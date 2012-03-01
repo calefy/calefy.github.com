@@ -1,42 +1,65 @@
 ---
 layout: post
 category : lessons
+title: Jekyll介绍
 tags : [intro, beginner, jekyll, tutorial]
 ---
 {% include JB/setup %}
 
-This Jekyll introduction will outline specifically  what Jekyll is and why you would want to use it.
-Directly following the intro we'll learn exactly _how_ Jekyll does what it does.
+这篇Jekyll介绍将特别指出 什么是Jekyll和为什么你愿意使用它。
+下面的介绍我们将特别学到Jekyll _如何_ 实现它的功能。
 
-## Overview 
-
-### What is Jekyll?
-
-Jekyll is a parsing engine bundled as a ruby gem used to build static websites from
-dynamic components such as templates, partials, liquid code, markdown, etc. Jekyll is known as "a simple, blog aware, static site generator".
-
-### Examples
-
-This website is created with Jekyll. [Other Jekyll websites](https://github.com/mojombo/jekyll/wiki/Sites).
+>This Jekyll introduction will outline specifically  what Jekyll is and why you would want to use it.
+>Directly following the intro we'll learn exactly _how_ Jekyll does what it does.
 
 
+## 概述
 
-### What does Jekyll Do?
+>## Overview 
 
-Jekyll is a ruby gem you install on your local system.
-Once there you can call `jekyll --server` on a directory and provided that directory
-is setup in a way jekyll expects, it will do magic stuff like parse markdown/textile files, 
-compute categories, tags, permalinks, and construct your pages from layout templates and partials.
+### Jekyll是什么？
 
-Once parsed, Jekyll stores the result in a self-contained static `_site` folder.
-The intention here is that you can serve all contents in this folder statically from a plain static web-server.
+Jekyll作为一个ruby gem，是用来从诸如模板、模块、liquid code、markdown等动态组件，创建静态网站的解析引擎（parsing engine）。它通常被认为是“一个简单的适用于博客的静态网站生成器”。
 
-You can think of Jekyll as a normalish dynamic blog but rather than parsing content, templates, and tags
-on each request, Jekyll does this once _beforehand_ and caches the _entire website_ in a folder for serving statically.
+>### What is Jekyll?
+>Jekyll is a parsing engine bundled as a ruby gem used to build static websites from
+>dynamic components such as templates, partials, liquid code, markdown, etc. Jekyll is known as "a simple, blog aware, static site generator".
 
-### Jekyll is Not Blogging Software
+### 示例
 
-**Jekyll is a parsing engine.**
+这个网站就是用Jekyll创建的。[其他Jekyll站点](https://github.com/mojombo/jekyll/wiki/Sites)
+
+>### Examples
+>This website is created with Jekyll. [Other Jekyll websites](https://github.com/mojombo/jekyll/wiki/Sites).
+
+### Jekyll能做什么
+
+Jekyll是一个安装在本地系统的ruby gem。
+一旦可以在一个以jekyll支持的方式建立的文件夹中使用 `jekyll --server`，它就可以做一些神奇的转换，诸如解析markdown/textile文件、计算分类、标签、permalinks，从模板和文件碎片中组织页面。
+
+解析后，Jekyll把结果存储在网站内部的静态 `_site` 文件夹中。这么做的目的是你能把一个静态网站的所有文本内容放置在这里。
+
+你可以把Jekyll认为是一个一般的动态博客，但它不在每次请求时都解析内容、模板和标签，而是 _预先_ 解析一次，然后把 _整个站点_ 缓存在一个文件夹中，返回静态内容。
+
+>### What does Jekyll Do?
+>Jekyll is a ruby gem you install on your local system.
+>
+>Once there you can call `jekyll --server` on a directory and provided that directory
+>is setup in a way jekyll expects, it will do magic stuff like parse markdown/textile files, 
+>compute categories, tags, permalinks, and construct your pages from layout templates and partials.
+>
+>Once parsed, Jekyll stores the result in a self-contained static `_site` folder.
+>The intention here is that you can serve all contents in this folder statically from a plain static web-server.
+>
+>You can think of Jekyll as a normalish dynamic blog but rather than parsing content, templates, and tags
+>on each request, Jekyll does this once _beforehand_ and caches the _entire website_ in a folder for serving statically.
+
+### Jekyll不是博客软件
+
+**Jekyll是一个解析引擎(parsing engine)**
+
+>### Jekyll is Not Blogging Software
+>**Jekyll is a parsing engine.**
 
 Jekyll does not come with any content nor does it have any templates or design elements.
 This is a common source of confusion when getting started.

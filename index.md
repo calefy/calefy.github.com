@@ -1,16 +1,16 @@
 ---
 layout: page
-title: Hello World!
+title: 蒹葭苍苍
 ---
 {% include JB/setup %}
 
-Read [Jekyll Quick Start](http://jekyllbootstrap.com/usage/jekyll-quick-start.html)
+阅读 [Jekyll 快速开始](http://jekyllbootstrap.com/usage/jekyll-quick-start.html)
 
-Complete usage and documentation available at: [Jekyll Bootstrap](http://jekyllbootstrap.com)
+示例和文档说明：[Jekyll Bootstrap](http://jekyllbootstrap.com)
 
-## Update Author Attributes
+## 更新作者属性
 
-In `_config.yml` remember to specify your own data:
+在 `_config.yml` 中更改自己的信息：
     
     title : My Blog =)
     
@@ -20,16 +20,16 @@ In `_config.yml` remember to specify your own data:
       github : username
       twitter : username
 
-The theme should reference these variables whenever needed.
+主题模板会在需要的时候引用这些信息。
     
-## Sample Posts
+## 示例文章
 
-This blog contains sample posts which help stage pages and blog data.
-When you don't need the samples anymore just delete the `_posts/core-samples` folder.
+该博客包含示例文章，该示例帮助演示网页和博客数据。
+当你不再需要示例文件时，删除 `_posts/core-samples` 文件夹。
 
     $ rm -rf _posts/core-samples
 
-Here's a sample "posts list".
+这是示例的文章列表。
 
 <ul class="posts">
   {% for post in site.posts %}
@@ -37,9 +37,8 @@ Here's a sample "posts list".
   {% endfor %}
 </ul>
 
-## To-Do
+## 待办
 
-This theme is still unfinished. If you'd like to be added as a contributor, [please fork](http://github.com/plusjade/jekyll-bootstrap)!
-We need to clean up the themes, make theme usage guides with theme-specific markup examples.
+这套主题模板尚未完成。如果你愿意帮助完成，欢迎[加入(fork)](http://github.com/plusjade/jekyll-bootstrap)！我们需要用更好的示例模板展示用户指南。
 
 
