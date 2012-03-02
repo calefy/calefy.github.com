@@ -1,9 +1,9 @@
-permalink: /:year/:month/:day/:title 
+#permalink: /:year/:month/:day/:title 
 
-auto: true
-pygments: true
+#auto: true
+#pygments: true
 #markdown: rdiscount
 
-markdown: redcarpet2
-redcarpet:
-  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", "with_toc_data"]
+#markdown: redcarpet2
+#redcarpet:
+#  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", "with_toc_data"]
