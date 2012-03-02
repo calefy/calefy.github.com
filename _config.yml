@@ -1,8 +1,8 @@
-#permalink: /:year/:month/:day/:title 
+permalink: /:year/:month/:day/:title 
 
-#auto: true
-#pygments: true
-#markdown: rdiscount
+auto: true
+pygments: true
+markdown: rdiscount
 
 #markdown: redcarpet2
 #redcarpet:
