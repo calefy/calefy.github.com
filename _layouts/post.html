@@ -2,7 +2,8 @@
 layout: default
 ---
 
-<h2>{{ page.title }} <i>Post</i></h2>
+<h2>{{ page.title }} <time date="{{ page.date }}">{{ page.date | date_to_string }}</time></h2>
+
 
 {{ content }}
 

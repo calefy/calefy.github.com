@@ -7,12 +7,16 @@ body {
 	font: 13.34px helvetica,arial,freesans,clean,sans-serif;
 	line-height: 1.4em;
 	line-height: 1.5;
-	margin: 0;
-	padding:.7em;
+	margin: 0 auto;
 	text-align:left;
 	color: black;
 	width:920px;
 	background-color: white;
+}
+
+.content{
+	padding:1em;
 	border: 1px solid #CACACA;
 	border-radius:3px;
 }
+time{font-size:13px;color:#999;}

@@ -12,8 +12,10 @@ tags: [macvim, markdown, highlight]
 
 这个插件的安装和其他vim插件一样，都是拷贝相应文件到对应的目录。
 
-1. __github下载：<https://github.com/plasticboy/vim-markdown>  
-    plasticboy下载：<http://plasticboy.com/dox/vim-markdown.zip>  
+1. __github下载：<https://github.com/plasticboy/vim-markdown>
+
+    plasticboy下载：<http://plasticboy.com/dox/vim-markdown.zip>
+
     推荐使用github下载，plasticboy.com 版本中 `ftdetect/mkd.vim` 不如github上的更新，github上的版本能够支持多种后缀名称的文件。
 
 2. 将下载的zip文件解压后，会得到下面的目录结构：
@@ -28,12 +30,14 @@ tags: [macvim, markdown, highlight]
 
 	`$VIM` 对应的目录在windows和Linux系统上是不同的，相信你在安装使用vim的时候应该已经注意到了。
 
-    - Mac和Linux下一般是 `~/.vim/`，如果没有对应的文件夹，用`mkdir`创建
-		
-        cp ./syntax/mkd.vim ~/.vim/syntax/
-	    cp ./ftdetect/mkd.vim ~/.vim/ftdetect/
-
-    - Windows一般就是vim的安装目录下了。
+    > - Mac和Linux下一般是 `~/.vim/`，如果没有对应的文件夹，用`mkdir`创建
+	>
+	>		```
+    >		cp ./syntax/mkd.vim ~/.vim/syntax/  
+	>		cp ./ftdetect/mkd.vim ~/.vim/ftdetect/
+	>		```
+    >
+    > - Windows一般就是vim的安装目录下了。
 
 一切就是这么简单，复制到对应目录，然后重启你的vim就ok了。
 
@@ -44,7 +48,7 @@ tags: [macvim, markdown, highlight]
 - syntax中的 `mkd.vim` 是关键的语法解析文件，里面是关于语法高亮的详细定义。
 - ftdetect中的 `mkd.vim` 定义的是自动解析哪些文件。
 
-   下面是github最新版本中的定义方式，支持的后缀名包括花括号中的内容，如果有新的定义，可以自己添加
+	下面是github最新版本中的定义方式，支持的后缀名包括花括号中的内容，如果有新的定义，可以自己添加
 
 		au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn}   set filetype=mkd
 

@@ -41,3 +41,21 @@ title: Calefy
 这套主题模板尚未完成。如果你愿意帮助完成，欢迎[加入(fork)](http://github.com/plusjade/jekyll-bootstrap)！我们需要用更好的示例模板展示用户指南。
 
 
+测试
+====
+
+1. Hello world
+2. hello
+    
+	hellokdkkdk
+
+
+3. goodbye 
+
+	```javascript
+	function abc(){
+		alert(50);
+	}
+	```
+
+
