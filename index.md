@@ -2,7 +2,6 @@
 layout: page
 title: Calefy
 ---
-{% include JB/setup %}
 
 阅读 [Jekyll 快速开始](http://jekyllbootstrap.com/usage/jekyll-quick-start.html)
 
@@ -33,7 +32,7 @@ title: Calefy
 
 <ul class="posts">
   {% for post in site.posts %}
-    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
+    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
   {% endfor %}
 </ul>
 

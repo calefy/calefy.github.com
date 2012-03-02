@@ -12,11 +12,9 @@ tags: [macvim, markdown, highlight]
 
 这个插件的安装和其他vim插件一样，都是拷贝相应文件到对应的目录。
 
-1. __github下载：<https://github.com/plasticboy/vim-markdown>__
-
-   plasticboy下载：<http://plasticboy.com/dox/vim-markdown.zip>
-
-   推荐使用github下载，plasticboy.com 版本中 `ftdetect/mkd.vim` 不如github上的更新，github上的版本能够支持多种后缀名称的文件。
+1. __github下载：<https://github.com/plasticboy/vim-markdown>  
+    plasticboy下载：<http://plasticboy.com/dox/vim-markdown.zip>  
+    推荐使用github下载，plasticboy.com 版本中 `ftdetect/mkd.vim` 不如github上的更新，github上的版本能够支持多种后缀名称的文件。
 
 2. 将下载的zip文件解压后，会得到下面的目录结构：
 
@@ -30,12 +28,12 @@ tags: [macvim, markdown, highlight]
 
 	`$VIM` 对应的目录在windows和Linux系统上是不同的，相信你在安装使用vim的时候应该已经注意到了。
 
-	- Mac和Linux下一般是 `~/.vim/`，如果没有对应的文件夹，用`mkdir`创建
+    - Mac和Linux下一般是 `~/.vim/`，如果没有对应的文件夹，用`mkdir`创建
 		
-	        cp ./syntax/mkd.vim ~/.vim/syntax/
-	        cp ./ftdetect/mkd.vim ~/.vim/ftdetect/
+        cp ./syntax/mkd.vim ~/.vim/syntax/
+	    cp ./ftdetect/mkd.vim ~/.vim/ftdetect/
 
-	- Windows一般就是vim的安装目录下了。
+    - Windows一般就是vim的安装目录下了。
 
 一切就是这么简单，复制到对应目录，然后重启你的vim就ok了。
 

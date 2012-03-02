@@ -22,6 +22,7 @@ Uses github's own [redcarpet][redcarpet] library to provide accurate markdown pr
 
 ---
 
+
 ##[GitHub Flavored Markdown][ghfm] Extensions Supported:
 
 * Fenced codeblocks
@@ -31,6 +32,8 @@ Uses github's own [redcarpet][redcarpet] library to provide accurate markdown pr
 		return "string"
 	}
 	```
+	
+
 * ~~Strikethru~~ support
 * Syntax highlighting via [`pygments`][pygments]
 

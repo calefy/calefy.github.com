@@ -4,10 +4,10 @@ title: 页面
 header: Pages
 group: navigation
 ---
-{% include JB/setup %}
 
 <h2>所有页面</h2>
 <ul>
-{% assign pages_list = site.pages %}
-{% include JB/pages_list %}
+{% for page in site.pages %}
+	<li>[page.title <span>({{ page.date | date_to_string }})</span>](page.url)</li>
+{% endfor %}
 </ul>

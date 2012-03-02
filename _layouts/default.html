@@ -1,5 +1,22 @@
----
-theme :
-  name : twitter
----
-{% include JB/setup %}{% include themes/twitter/default.html %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>{{ page.title }}</title>
+		<link rel="stylesheet" href="/css/ghf_marked.css" />
+		<link rel="stylesheet" href="/css/main.css" />
+	</head>
+	<body>
+		<header>
+			<h1>Calefy</h1>
+		</header>
+		<section class="content">
+		
+			{{ content }}
+		
+		</section>
+		<footer>
+			<p>&copy;2012 Linfei Chen  Powered by Jekyll</p>
+		</footer>
+	</body>
+</html>
