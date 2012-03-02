@@ -4,7 +4,6 @@ title: 标签
 header: Posts By Tag
 group: navigation
 ---
-{% include JB/setup %}
 
 <ul class="tag_box inline">
   {% assign tags_list = site.tags %}  
@@ -16,6 +15,5 @@ group: navigation
   <h2 id="{{ tag[0] }}-ref">{{ tag[0] }}</h2>
   <ul>
     {% assign pages_list = tag[1] %}  
-    {% include JB/pages_list %}
   </ul>
 {% endfor %}
