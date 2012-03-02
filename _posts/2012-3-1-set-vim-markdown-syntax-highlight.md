@@ -1,20 +1,20 @@
 ---
 layout: post
-category: lessons
 title: 在vim中设置markdown语法高亮
-tags: [macvim, markdown, highlight]
 ---
 
----
+{{ page.title }}
+================
 
 在vim中设置markdown语法高亮是一个不错的选择，但是在google中搜索到的很多都是比较老的设置方式，甚至vim插件下载页面都是一个旧的版本。这里总结下我的修改过程，以帮助像我一样纠结的人。
 
 
-### 安装插件
+安装插件
+--------
 
 这个插件的安装和其他vim插件一样，都是拷贝相应文件到对应的目录。
 
-1. __github下载：<https://github.com/plasticboy/vim-markdown>
+1. github下载：<https://github.com/plasticboy/vim-markdown>
 
     plasticboy下载：<http://plasticboy.com/dox/vim-markdown.zip>
 
@@ -31,19 +31,16 @@ tags: [macvim, markdown, highlight]
 	将两个 `mkd.vim` 分别复制到 `$VIM` 下对应的 `syntax` 和 `ftdetect` 文件夹中。
 
 	`$VIM` 对应的目录在windows和Linux系统上是不同的，相信你在安装使用vim的时候应该已经注意到了。
+	- Mac和Linux下一般是 `~/.vim/`，如果没有对应的文件夹，用`mkdir`创建
 
-    > - Mac和Linux下一般是 `~/.vim/`，如果没有对应的文件夹，用`mkdir`创建
-	>
-	>		```
-    >		cp ./syntax/mkd.vim ~/.vim/syntax/  
-	>		cp ./ftdetect/mkd.vim ~/.vim/ftdetect/
-	>		```
-    >
-    > - Windows一般就是vim的安装目录下了。
+			cp ./syntax/mkd.vim ~/.vim/syntax/
+			cp ./ftdetect/mkd.vim ~/.vim/ftdetect/
+	- Windows一般就是vim的安装目录下了。
 
 一切就是这么简单，复制到对应目录，然后重启你的vim就ok了。
 
-### 插件内容
+插件内容
+--------
 
 尽管名字相同，两个文件夹中的文件是不同的。
 
@@ -54,7 +51,8 @@ tags: [macvim, markdown, highlight]
 
 		au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn}   set filetype=mkd
 
-### 结论
+结论
+-------
 
 相比较很多之前文章介绍的复杂方式，这个应该是最传统简单的了。只要放置对应目录的文件，不需要在vim用户配置文件中做任何修改即可使用markdown的语法高亮，比单纯的文本明了很多。
 

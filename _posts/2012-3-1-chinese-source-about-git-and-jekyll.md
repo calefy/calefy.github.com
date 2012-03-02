@@ -1,6 +1,5 @@
 ---
 layout: post
-category: lessons
 title: 关于Git和Jekyll的中文资源
 ---
 
