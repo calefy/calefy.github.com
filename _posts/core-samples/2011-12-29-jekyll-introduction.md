@@ -4,7 +4,6 @@ category : lessons
 title: Jekyll介绍
 tags : [intro, beginner, jekyll, tutorial]
 ---
-{% include JB/setup %}
 
 这篇Jekyll介绍将特别指出 什么是Jekyll和为什么你愿意使用它。
 下面的介绍我们将特别学到Jekyll _如何_ 实现它的功能。
@@ -191,6 +190,15 @@ Jekyll只支持按时间正序和反序排列。
 
 因为很难将文件名格式上的日期编程，所以要像改变顺序，只能修改文件名上的日期。
 
+**标签**  
+posts通过元数据设置关联的标签。
+标签可以通过post中的YAML front matter放置到post中。
+你在模板中定义的post标签，同时被添加到了全站范围中。
+
+**分类**  
+posts可以被设置分类，只要在YAML front matter提供一个或多个分类。
+分类比标签更有意义，因为它们能被反映到url中。
+
 >### Working With Posts
 >
 >**Creating a Post**   
@@ -207,11 +215,11 @@ Jekyll只支持按时间正序和反序排列。
 >Only reverse chronological and chronological ordering is supported in Jekyll.
 >
 >Since the date is hard-coded into the filename format, to change the order, you must change the dates in the filenames.
-
-**Tags**   
-Posts can have tags associated with them as part of their meta-data.
-Tags may be placed on posts by providing them in the post's YAML front matter.
-You have access to the post-specific tags in the templates. These tags also get added to the sitewide collection.
+>
+>**Tags**   
+>Posts can have tags associated with them as part of their meta-data.
+>Tags may be placed on posts by providing them in the post's YAML front matter.
+>You have access to the post-specific tags in the templates. These tags also get added to the sitewide collection.
 
 **Categories**   
 Posts may be categorized by providing one or more categories in the YAML front matter.
