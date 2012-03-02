@@ -5,6 +5,8 @@ title: 在vim中设置markdown语法高亮
 tags: [macvim, markdown, highlight]
 ---
 
+---
+
 在vim中设置markdown语法高亮是一个不错的选择，但是在google中搜索到的很多都是比较老的设置方式，甚至vim插件下载页面都是一个旧的版本。这里总结下我的修改过程，以帮助像我一样纠结的人。
 
 

@@ -1,13 +1,6 @@
-_site/*
-_cache/*
-_theme_packages/*
+_site/
+_cache/
 
-Thumbs.db
 .DS_Store
+*.swp
 
-!.gitkeep
-
-.rbenv-version
-.rvmrc
-
-.*.swp
