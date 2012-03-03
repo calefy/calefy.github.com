@@ -1,9 +1,11 @@
 ---
 layout: post
-category : lessons
-title: Jekyll介绍
+title: Jekyll介绍（翻译未完）
 tags : [intro, beginner, jekyll, tutorial]
 ---
+
+{{ page.title }}
+=================
 
 这篇Jekyll介绍将特别指出 什么是Jekyll和为什么你愿意使用它。
 下面的介绍我们将特别学到Jekyll _如何_ 实现它的功能。
