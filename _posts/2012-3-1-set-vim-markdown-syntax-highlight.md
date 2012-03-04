@@ -1,6 +1,8 @@
 ---
 layout: post
 title: 在vim中设置markdown语法高亮
+categories: [vim, jekyll]
+tags: [vim, markdown]
 ---
 
 {{ page.title }}

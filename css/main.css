@@ -27,14 +27,15 @@ a:hover{color:#72c898;text-decoration:underline;}
 
 	/* header */
 #header{overflow:hidden;position:relative;padding:10px 0;margin-bottom:20px;border-bottom:2px double #666;}
-.logo_area{float:right;}
-.logo_area a:hover{text-decoration:none;}
-.logo_area h1{float:right;font-size:35px;font-family:"Microsoft Yahei";padding:0 10px 0 20px;border:none;
+#header .mark-words{position:absolute;top:10px;left:20px;font-style:italic;}
+.logo-area{float:right;}
+.logo-area a:hover{text-decoration:none;}
+.logo-area h1{float:right;font-size:35px;font-family:"Microsoft Yahei";padding:0 10px 0 20px;border:none;
 	text-shadow:0 0 1px rgba(0,0,0,.9), 3px -2px 5px rgba(0,0,0,.9);
 	-webkit-transform:skew(0, -10deg);
 }
-.logo_area h1 a{color:#fdfeff;}
-.logo_area p{float:left;font-size:15px;text-align:right;padding-right:20px;border-right:2px double #666;
+.logo-area h1 a{color:#fdfeff;}
+.logo-area p{float:left;font-size:15px;text-align:right;padding-right:20px;border-right:2px double #666;
 	-webkit-transform:skew(0, 5deg);
 }
 .navigation{padding:40px 0 0;}

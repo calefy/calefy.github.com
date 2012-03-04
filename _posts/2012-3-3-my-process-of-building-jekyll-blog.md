@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Jekyll建站之旅
-
+category: jekyll
+tags: [jekyll, tutorial]
 ---
 
 {{ page.title }}
@@ -97,7 +98,7 @@ title: Jekyll建站之旅
 1. 阅读[一步步构建Jekyll网站][buildJekyllStepbyStep] ，对整个要做的事有基础的了解。
 2. 根据上一步不懂的去查阅资料，只要两个地方就很齐全了：
     - 官方Wiki： <https://github.com/mojombo/jekyll/wiki>
-	- 官方指定的教程：<http://jekyllbootstrap.com> 
+	- 官方指定的教程：<http://jekyllbootstrap.com> ，更深入的API信息可以在这里找到。
 	- 如果哪个地方还不清楚可以查看本文中出现的相关资料
 
 

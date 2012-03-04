@@ -6,7 +6,7 @@ layout: default
 <aside id="related">
   <h3>最近文章</h3>
   <ul class="posts">
-	  {% for post in site.related_posts limit:10 %}
+	  {% for post in site.related_posts %}
 	  <li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
 	  {% endfor %}
   </ul>
@@ -15,6 +15,11 @@ layout: default
 
 <article id="post">
 	<time date="{{ page.date }}">{{ page.date|date_to_long_string }}</time>
+	<div>
+		分类：{{ page.categories | join: ', ' }}
+		&emsp;&emsp;&emsp;&emsp;
+		标签：{{ page.tags | join: ', ' }}
+	</div>
 
 	{{ content }}
 

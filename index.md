@@ -4,18 +4,18 @@ title: Calefy
 ---
 
 
-文章列表
---------
+{% for post in site.posts %}
 
-<ul class="posts">
-  {% for post in site.posts %}
-    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
-  {% endfor %}
-</ul>
+## [{{ post.title }}]({{ post.url }}) <time>{{ post.date | date_to_long_string }}</time>
 
-待办
+标签： {{ post.tags | join: ', ' }}
+
+{{ post.content | strip_html | truncatewords: 15 }}
+
+[全文阅读 &raquo;]({{ post.url }})
+
 ----
 
-- 主题样式尚未完成
-- js解析Markdown
+{% endfor %}
+
 

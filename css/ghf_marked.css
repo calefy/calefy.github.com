@@ -63,13 +63,14 @@ p {
 
 pre, code {
 	font: 12px 'Bitstream Vera Sans Mono','Courier',monospace;
-	color: black;
+	color: #d9ecf1;
 }
 .highlight pre, pre {
-	background-color:#f8f8f8;
+	background-color:#82868a;
+	background-color:rgba(255,255,255,.3);
 	border:1px solid #ccc;
-	margin-left:1em;
-	margin-right:1em;
+	margin-left:.5em;
+	margin-right:.5em;
 	font-size:13px;
 	line-height:19px;
 	overflow:auto;
@@ -84,7 +85,7 @@ pre, code {
 code {
 	white-space:nowrap;
 	border:1px solid #ccc;
-	background-color:#f8f8f8;
+	background-color:#82868a;
 	border-radius:3px;
 	-moz-border-radius:3px;
 	-webkit-border-radius:3px;
@@ -132,7 +133,7 @@ table tr
 
 table tr:nth-child(2n)
 {
-	background-color:#f8f8f8;
+	background-color:#82868a;
 }
 table tr th[align="center"], table tr td[align="center"] {
 	text-align:center;
