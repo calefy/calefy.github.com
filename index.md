@@ -17,7 +17,5 @@ title: Calefy
 ----
 
 - 主题样式尚未完成
-- 评论未加
-- 网站分析未加
 - js解析Markdown
 
