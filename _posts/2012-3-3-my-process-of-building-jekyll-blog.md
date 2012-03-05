@@ -28,7 +28,7 @@ tags: [jekyll, tutorial]
 开始：补充基础知识点
 --------------------
 
-最全面的资料莫过于官网的 [Jekyll Wiki][jekyllwiki] 了。强烈建议把它的 `Home` 页上所有的链接地址都点一遍，涵盖了 Jekyll 博客的所有知识。如果本文中有哪些Jekyll用到的知识没有介绍到链接地址，那么在这个Wiki中都可以找到。
+最全面的资料莫过于官网的 [Jekyll Wiki][jekyllwiki] 了。强烈建议把它的 Home 页上所有的链接地址都点一遍，涵盖了 Jekyll 博客的所有知识。如果本文中有哪些Jekyll用到的知识没有介绍到链接地址，那么在这个Wiki中都可以找到。
 
 开始自己对 Jekyll 相关知识的了解匮乏而混乱，发现哪儿不知道了，就去搜素、查找，对 Jekyll 没有一个全面的认识。等所有的都看过了，回过头来才发现 [Jekyll Wiki][jekyllwiki] 才是最全面的。⋯⋯从零开始，理解这些内容将是一个庞大的工程。
 
@@ -40,7 +40,7 @@ tags: [jekyll, tutorial]
 
 	关于 GitHub， [《Git权威指南》][gitprozh] 的作者蒋鑫有关于它的另一本书 [GotGitHub](http://www.worldhello.net/gotgithub/) （中文 & **免费** ）。感谢作者的分享。
 
-	GitHub Pages 是 GitHub 提供的托管服务，可以建立自己的主页，如果有域名还可以指向这里。在上面提到的 GotGitHub 的 `3.5` 章有详细的介绍。
+	GitHub Pages 是 GitHub 提供的托管服务，可以建立自己的主页，如果有域名还可以指向这里。在上面提到的 GotGitHub 的 *3.5* 章有详细的介绍。
 
 - Markdown
 
@@ -69,7 +69,7 @@ tags: [jekyll, tutorial]
 
 对我来说，开始的过程还是喜欢用实例一步步构建，发现了一份迟到的文档 [一步步构建Jekyll网站][buildJekyllStepbyStep] ，这是一篇译文，但是对初学者理清概念相当不错，值得多读几遍。
 
-仔细研究 `Jekyll Bootsharp` 的代码以对整个Jekyll网站有全面的了解，发现 `_layout` 中的文件绕了一个大圈去引用 `_include` 中定义的 [Twitter Bootstrap](http://twitter.github.com/bootstrap/) 中的内容，感觉很不爽。于是根据教程放弃了这个框架，开始从最基本的文件构建，一切简简单单，去掉一切我不需要的东西，把一切都置于掌控之中，感觉很棒。
+仔细研究 Jekyll Bootsharp 的代码以对整个Jekyll网站有全面的了解，发现 *_layout* 中的文件绕了一个大圈去引用 *_include* 中定义的 [Twitter Bootstrap](http://twitter.github.com/bootstrap/) 中的内容，感觉很不爽。于是根据教程放弃了这个框架，开始从最基本的文件构建，一切简简单单，去掉一切我不需要的东西，把一切都置于掌控之中，感觉很棒。
 
 
 写作：没有GFM的纠结
@@ -77,7 +77,7 @@ tags: [jekyll, tutorial]
 
 网站建好了就开始写些东西。Markdown真的很让人有写作的欲望，一方面简单得几乎完全是我要写的东西，去掉一切样式，另一方面则是语法的优美，虽然不是完全的所见即所得，但能够看到的仍然是那么优美。
 
-在GitHub上写评论都用它的GFM语法，尤其是 ```` ``` ```` 语法高亮让我痴迷，也想让自己的网站加上这个东西，但是几番折腾后，我还是放弃了。GitHub Pages 不允许用户运行自己的后台代码，因此基于 `.rb` 的插件都不能使用了。
+在GitHub上写评论都用它的GFM语法，尤其是 ```` ``` ```` 语法高亮让我痴迷，也想让自己的网站加上这个东西，但是几番折腾后，我还是放弃了。GitHub Pages 不允许用户运行自己的后台代码，因此基于 *.rb* 的插件都不能使用了。
 
 如果不用GitHub Pages托管自己的网站，可以用这个插件：[Jekyll plugins][jekyllplugin] ，它可以支持Markdown应用 ```` ``` ```` 来定义语法高亮。另外作者还专门针对写插件的过程做了介绍：[How to extend the Redcarpet 2 Markdown library?](http://dev.af83.com/2012/02/27/howto-extend-the-redcarpet2-markdown-lib.html) （GitHub上很多内容都是基于Redcarpet2来转换），有兴趣可以研究一二。我甚至跑去问这个插件的作者怎么办，他说目前只能先生成html再上传了，郁闷！
 
