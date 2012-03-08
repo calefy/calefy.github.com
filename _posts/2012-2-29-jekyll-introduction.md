@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Jekyll介绍（翻译未完）
+published: false
 tags : [intro, beginner, jekyll, tutorial]
 ---
 

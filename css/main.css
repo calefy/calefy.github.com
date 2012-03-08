@@ -29,9 +29,9 @@ a:hover{color:#208e51;text-decoration:underline;}
 
 	/* header */
 #header{overflow:hidden;position:relative;padding:10px 0;margin-bottom:20px;border-bottom:2px double #d3d2d2;
-	-webkit-box-shadow:0 1px 0 rgba(255,255,255,.5);	
-	-moz-box-shadow:0 1px 0 rgba(255,255,255,.5);	
-	box-shadow:0 1px 0 rgba(255,255,255,.5);	
+	-webkit-box-shadow:0 1px 0 rgba(255,255,255,.7);	
+	-moz-box-shadow:0 1px 0 rgba(255,255,255,.7);
+	box-shadow:0 1px 0 rgba(255,255,255,.7);
 }
 #header .mark-words{position:absolute;top:10px;left:20px;font-style:italic;}
 .logo-area{float:right;}
@@ -51,27 +51,27 @@ a:hover{color:#208e51;text-decoration:underline;}
 
 	/* footer */
 #footer{overflow:hidden;position:relative;margin-top:30px;border-top:1px solid #d3d2d2;
-	-webkit-box-shadow:0 -1px 0 rgba(255,255,255,.5);	
-	-moz-box-shadow:0 -1px 0 rgba(255,255,255,.5);	
-	box-shadow:0 -1px 0 rgba(255,255,255,.5);	
+	-webkit-box-shadow:0 -1px 0 rgba(255,255,255,.7);	
+	-moz-box-shadow:0 -1px 0 rgba(255,255,255,.7);
+	box-shadow:0 -1px 0 rgba(255,255,255,.7);
 }
 
 
 #related,
 #post{padding:1em;border: 1px solid #d3d2d2;border-radius:3px;
 	background-color:rgba(200,200,200,.05);
-	-webkit-box-shadow:inset 0 0 1px #fff;
-	-moz-box-shadow:inset 0 0 1px #fff;
-	box-shadow:inset 0 0 1px #fff;
+	-webkit-box-shadow:inset 0 0 1px #fff, inset 0 0 3px #fff;
+	-moz-box-shadow:inset 0 0 1px #fff, inset 0 0 3px #fff;
+	box-shadow:inset 0 0 1px #fff, inset 0 0 3px #fff;
 }
 #related{float:right;width:200px;padding-top:0;}
 #related h3{color:#034e24;
-	-webkit-box-shadow:0 1px 0 rgba(255,255,255,.5);	
-	-moz-box-shadow:0 1px 0 rgba(255,255,255,.5);	
-	box-shadow:0 1px 0 rgba(255,255,255,.5);	
+	-webkit-box-shadow:0 1px 0 rgba(255,255,255,.7);	
+	-moz-box-shadow:0 1px 0 rgba(255,255,255,.7);
+	box-shadow:0 1px 0 rgba(255,255,255,.7);
 }
 #related ul{margin-left:0;padding-left:0;list-style:none;}
-#related li{border-bottom:1px solid #ddd;}
+#related li{white-space:nowrap;text-overflow:ellipsis;overflow:hidden;padding-bottom:5px;border-bottom:1px solid #ddd;}
 #post{margin-right:245px;}
 #post h3{border-bottom:none;}
 
