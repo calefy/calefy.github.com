@@ -37,12 +37,18 @@ a:hover{color:#208e51;text-decoration:underline;}
 .logo-area{float:right;}
 .logo-area a:hover{text-decoration:none;}
 .logo-area h1{float:right;font-size:35px;font-family:"Microsoft Yahei";padding:0 10px 0 20px;border:none;
+	-webkit-text-shadow:0 0 1px rgba(0,0,0,.9), 3px -2px 5px rgba(0,0,0,.9);
+	-moz-text-shadow:0 0 1px rgba(0,0,0,.9), 3px -2px 5px rgba(0,0,0,.9);
 	text-shadow:0 0 1px rgba(0,0,0,.9), 3px -2px 5px rgba(0,0,0,.9);
 	-webkit-transform:skew(0, -10deg);
+	-moz-transform:skew(0, -10deg);
+	transform:skew(0, -10deg);
 }
 .logo-area h1 a{color:#fdfeff;}
 .logo-area p{float:left;font-size:15px;text-align:right;padding-right:20px;border-right:2px double #666;
 	-webkit-transform:skew(0, 5deg);
+	-moz-transform:skew(0, 5deg);
+	transform:skew(0, 5deg);
 }
 .navigation{padding:40px 0 0;}
 .navigation ul{list-style:none;padding:0;margin:0;}
@@ -57,6 +63,7 @@ a:hover{color:#208e51;text-decoration:underline;}
 }
 
 
+	/* 正文主体 */
 #related,
 #post{padding:1em;border: 1px solid #d3d2d2;border-radius:3px;
 	background-color:rgba(200,200,200,.05);
@@ -76,4 +83,11 @@ a:hover{color:#208e51;text-decoration:underline;}
 #post h3{border-bottom:none;}
 
 
+/*test*/
+.logo-area h1{-webkit-animation:fire 2s ease-in-out infinite;}
+@-webkit-keyframes fire{
+	0%{text-shadow:0 0 1px rgba(0,0,0,.9), 3px -2px 5px rgba(0,0,0,.9);}
+	50%{text-shadow:0 0 1px rgba(0,0,0,.9), 3px -2px 10px rgba(0,0,0,.99);}
+	100%{text-shadow:0 0 1px rgba(0,0,0,.9), 3px -2px 5px rgba(0,0,0,.9);}
+}
 
