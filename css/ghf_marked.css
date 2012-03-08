@@ -1,7 +1,7 @@
 /* 
    Some simple Github-like styles, with syntax highlighting CSS via Pygments.
 */
-h1,h2,h3,h4,h5,h6{color:#e5f0f4;}
+h1,h2,h3,h4,h5,h6{color:#444;}
 h1 {
 	padding-bottom:2px;
 	font-size:22px;
@@ -56,7 +56,7 @@ hr {
 
 
 p {
-	color:#c4cbd3;
+	color:#555;
 	margin: .8em 0;
 	line-height:1.7;
 }
