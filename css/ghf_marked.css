@@ -57,13 +57,10 @@ hr {
 
 p {
 	color:#555;
-	margin: .8em 0;
-	line-height:1.7;
 }
 
 pre, code {
-	font-family:monospace;
-	font: 12px 'Bitstream Vera Sans Mono','Courier',monospace;
+	font-family:monospace,'Bitstream Vera Sans Mono','Courier';
 }
 .highlight pre, pre {
 	background-color:#f4f4f4;
