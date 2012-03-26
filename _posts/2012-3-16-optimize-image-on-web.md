@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Web中图片的优化泛谈
-calegory: web
-tags: [gif,jpg,png,optimize]
+category: web
+tags: [image optimize]
 ---
 
 {{ page.title }}
