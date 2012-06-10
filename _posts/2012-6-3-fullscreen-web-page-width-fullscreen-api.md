@@ -1,6 +1,6 @@
 ---
 layout: post
-title: FullScreen API 全屏显示网页
+title: Fullscreen API 全屏显示网页
 category: javascript
 tags: [ javascript, fullscreen ]
 ---
