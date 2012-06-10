@@ -221,6 +221,7 @@ overflow : auto;
 
 Fullscreen API 毕竟目前只是草案，尚未形成正式的标准，况且各个浏览器的实现情况也不完全相同，甚至细节上的实现差别更可能引发预想不到的问题。但作为渐进增强方式使用的新功能，能够极大的增强用户体验。仍要根据规范的完善，不断改进我们的代码。
 
+详细代码可以参考：<https://github.com/calefy/calefy.github.com/blob/master/js/Fullscreen.js>
 
 
 参考
