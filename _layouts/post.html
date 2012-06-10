@@ -14,6 +14,7 @@ layout: default
 <!--相关文章 end-->
 
 <article id="post">
+	<a href="#" class="icon-fullscreen r" title="点击全屏显示"></a>
 	<time date="{{ page.date }}">{{ page.date|date_to_long_string }}</time>
 	<div>
 		分类：{{ page.categories | join: ', ' }}
@@ -23,6 +24,7 @@ layout: default
 
 	{{ content }}
 
+	<div>-EOF-</div>
 
 	<hr />
 
@@ -42,4 +44,32 @@ layout: default
 	<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
 	<!--Disqus end-->
 </article>
+
+<script src="/js/jquery-1.7.2.min.js"></script>
+<script src="/js/Fullscreen.js"></script>
+<script type="text/javascript">
+$( function() {
+	var fullscreen;
+	$( 'a.icon-fullscreen' ).on( 'click', function() {
+		var icon;
+		if ( !fullscreen ) {
+			icon = $( this );
+			fullscreen = new Fullscreen( {
+					element: $( '#post' ),
+					callback: function ( isFullscreen ) {
+						if ( isFullscreen ) {
+							icon.addClass( 'expand' ).attr( 'title', 'ESC 退出全屏' );
+						}
+						else {
+							icon.removeClass( 'expand' ).attr( 'title', '点击全屏显示' );
+						}
+					}
+				} );
+		}
+
+		fullscreen.toggleFullscreen();
+		return false;
+	} );
+} );
+</script>
 

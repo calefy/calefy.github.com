@@ -1,6 +1,7 @@
 _site/
 _cache/
 
+.gitignore
 .DS_Store
 *.swp
 

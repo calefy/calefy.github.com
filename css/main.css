@@ -11,8 +11,7 @@ html{min-height:100%;
 	-moz-box-shadow:inset 0 100px 200px rgba(0,0,0,.1);
 	box-shadow:inset 0 100px 200px rgba(0,0,0,.1);
 }
-body{padding:0 1em 1em;margin:0;color:#555;font:75%/1.8 'Microsoft Yahei',helvetica,arial,tahoma,sans-serif;background:#f0f0f0 url(images/body_bg.png) repeat;
-}
+body{padding:0 1em 1em;margin:0;color:#555;font:75%/1.8 tahoma,arial,sans-serif;background:#f0f0f0/* url(images/body_bg.png) repeat*/;}
 
 time{font-size:13px;color:#999;}
 a, a code{color:#246d45;text-decoration:none;}
@@ -59,13 +58,13 @@ a:hover{color:#208e51;text-decoration:underline;}
 
 	/* 正文主体 */
 #related,
-#post{padding:1em;border: 1px solid #d3d2d2;border-radius:3px;
-	background-color:rgba(200,200,200,.05);
+#post{padding:1em 1.5em;border: 1px solid #d3d2d2;
+	background-color:#f6f6f6;
 	-webkit-box-shadow:inset 0 0 1px #fff, inset 0 0 3px #fff;
 	-moz-box-shadow:inset 0 0 1px #fff, inset 0 0 3px #fff;
 	box-shadow:inset 0 0 1px #fff, inset 0 0 3px #fff;
 }
-#related{float:right;width:200px;padding-top:0;}
+#related{float:right;width:200px;padding:0 1em 1em;}
 #related h3{color:#034e24;
 	-webkit-box-shadow:0 1px 0 rgba(255,255,255,.7);	
 	-moz-box-shadow:0 1px 0 rgba(255,255,255,.7);
@@ -76,4 +75,8 @@ a:hover{color:#208e51;text-decoration:underline;}
 #post{margin-right:245px;}
 #post h3{border-bottom:none;}
 
-
+#post.fullscreen{margin:0 auto;width:1000px;}
+.icon-fullscreen{display:inline-block;width:24px;height:24px;background:url(images/fullscreen.png) no-repeat;}
+.icon-fullscreen:hover{background-position:-24px 0;}
+.icon-fullscreen.expand{background-position:0 -24px;}
+.icon-fullscreen.expand:hover{background-position:-24px -24px;}
