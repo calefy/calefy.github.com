@@ -49,13 +49,10 @@ layout: default
 <script src="/js/Fullscreen.js"></script>
 <script type="text/javascript">
 $( function() {
-	var fullscreen;
-	$( 'a.icon-fullscreen' ).on( 'click', function() {
-		var icon;
-		if ( !fullscreen ) {
-			icon = $( this );
-			fullscreen = new Fullscreen( {
+	var icon = $( 'a.icon-fullscreen' ),
+		fullscreen = new Fullscreen( {
 					element: $( '#post' ),
+					noSafari: true,
 					callback: function ( isFullscreen ) {
 						if ( isFullscreen ) {
 							icon.addClass( 'expand' ).attr( 'title', 'ESC 退出全屏' );
@@ -65,11 +62,16 @@ $( function() {
 						}
 					}
 				} );
-		}
 
-		fullscreen.toggleFullscreen();
-		return false;
-	} );
+	if ( fullscreen.fullscreenEnabled ) {
+		icon.on( 'click', function() {
+			fullscreen.toggleFullscreen();
+			return false;
+		} );
+	}
+	else {
+		icon.hide();
+	}
 } );
 </script>
 
