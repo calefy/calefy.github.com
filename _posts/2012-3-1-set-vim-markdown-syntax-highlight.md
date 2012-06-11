@@ -35,8 +35,8 @@ tags: [vim, markdown]
 	**$VIM** 对应的目录在windows和Linux系统上是不同的，相信你在安装使用vim的时候应该已经注意到了。
 	- Mac和Linux下一般是 *~/.vim/*，如果没有对应的文件夹，用`mkdir`创建
 
-			cp ./syntax/mkd.vim ~/.vim/syntax/
-			cp ./ftdetect/mkd.vim ~/.vim/ftdetect/
+            cp ./syntax/mkd.vim ~/.vim/syntax/
+            cp ./ftdetect/mkd.vim ~/.vim/ftdetect/
 	- Windows一般就是vim的安装目录下了。
 
 一切就是这么简单，复制到对应目录，然后重启你的vim就ok了。

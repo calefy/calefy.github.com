@@ -1,7 +1,11 @@
-.highlight { position:relative;font-size:0.9em;color: #d0d0d0; padding:1.5em 1.2em 0.8em;margin:1em 0;overflow:auto;background: #202020;
+pre,
+.highlight {color: #d0d0d0; padding:1.5em 1.2em 0.8em;margin:1em 0;overflow:auto;background: #202020;
 	border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;}
-.highlight pre{margin:0;}
-.highlight code{line-height:130%;padding:0;background:none;border:none;}
+pre{padding-top:0.8em;}
+.highlight{position:relative;}
+
+.highlight pre,
+.highlight code{padding:0;margin:0;background:none;border:none;}
 .highlight code:before{content:attr(class);position:absolute;top:0;right:0;color:#bde;font-size:1.2em;font-family:Constantia,Georgia;padding:3px 5px;background:#345;text-transform:uppercase;
 	border-radius:0 5px 0 5px;-webkit-border-radius:0 5px 0 5px;-moz-border-radius:0 5px 0 5px;}
 .highlight .hll { background-color: #404040 }
