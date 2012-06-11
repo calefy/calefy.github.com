@@ -13,7 +13,7 @@ tags: [ javascript, fullscreen ]
 这个 API 不仅能够使整个页面全屏显示，也可以使页面中的某个元素全屏显示。它的设计初衷是为了全屏显示 HTML5 视频和游戏，以便更全面的替代 flash 功能。尽管还有很多有待完善的地方，但是作为一个新的浏览器特性，在某些地方还是能够极大地增强用户体验。
 
 
-一、标准调用方式
+1\. 标准调用方式
 ----------------
 
 要对某个元素使用全屏特效，标准的流程是：
@@ -30,14 +30,14 @@ tags: [ javascript, fullscreen ]
 对应的，规范中还添加了一个 `:fullscreen` 伪类，对当前全屏的元素进行样式定义。
 
 
-二、封装API
+2\. 封装API
 ------------
 
 Fullscreen 目前只有两个方法：进入全屏、退出全屏，三个属性（全部是只读的）：是否支持全屏、当前全屏状态、当前全屏元素，以及一个在全屏状态改变时触发的事件（ [Using full-screen mode][2] 中提到还有一个 `fullscreenerror`，但是我没有测试出如何才能触发这个事件 ）。与 [W3 草案][1] 相比，FireFox 的实现更符合标准，而 webkit 内核浏览器中的方法则要自我很多。
 
 所有的方法和属性中，只有 `requestFullscreen()` 是 *element* 对象的方法，其他全部是 *document* 对象所有的方法和属性。
 
-####1. 进入全屏：`element.requestFullscreen()`####
+###2\.1 进入全屏：`element.requestFullscreen()`###
 
 将 *element* 全屏显示。webkit内核浏览器和Firefox表现不同，前者只要求element是DOM元素即可，后者则要求DOM必须是文档流中的元素，比较严格，否则不能全屏显示。
 
@@ -72,7 +72,7 @@ function requestFullscreen( elem ) {
 {% endhighlight %}
 
 
-####2. 退出全屏：`document.exitFullscreen()`####
+###2\.2 退出全屏：`document.exitFullscreen()`###
 
 从全屏状态中退出。目前实现的方法都是 `cancelFullScreen()` ,而不是标准的 `exitFullscreen()`。
 
@@ -93,7 +93,7 @@ function exitFullscreen() {
 }
 {% endhighlight %}
 
-####3. 浏览器是否支持全屏：`document.fullscreenEnabled`####
+###2\.3 浏览器是否支持全屏：`document.fullscreenEnabled`###
 
 通过该属性的boolean值判断浏览器是支持 Fullscreen 功能。
 
@@ -104,15 +104,15 @@ webkit 内核的浏览器目前还没有该属性，因此只能通过能力判�
 document.fullscreenEnabled = ( function() {
         var doc = document.documentElement;
         return ( 'requestFullscreen' in doc ) ||
-                ( 'webkitRequestFullScreen' in doc ) ||
-				// 对Firefox除了能力判断，还加上了属性判断
-                ( 'mozRequestFullScreen' in doc && document.mozFullScreenEnabled ) ||
-				false;
+               ( 'webkitRequestFullScreen' in doc ) ||
+			   // 对Firefox除了能力判断，还加上了属性判断
+               ( 'mozRequestFullScreen' in doc && document.mozFullScreenEnabled ) ||
+			   false;
     } )();
 {% endhighlight %}
 
 
-####4. ：`document.fullscreenElement`####
+###2\.4 ：`document.fullscreenElement`###
 
 当前全屏显示的DOM元素。
 
@@ -123,14 +123,14 @@ document.fullscreenEnabled = ( function() {
  */
 function fullscreenElement() {
 	return document.fullscreenElement ||
-            document.webkitCurrentFullScreenElement ||
-            document.mozFullScreenElement ||
-            null;
+           document.webkitCurrentFullScreenElement ||
+           document.mozFullScreenElement ||
+           null;
 }
 {% endhighlight %}
 
 
-####5. 当前全屏状态：`document.fullscreen`####
+###2\.5 当前全屏状态：`document.fullscreen`###
 
 该属性并未在2012/6/3的 [W3草案][1] 中出现，但在 [Using full-screen mode][2] 一文中介绍了该属性。其值为 *boolean* 类型，判断当前文档的全屏状态。
 
@@ -143,13 +143,13 @@ function fullscreenElement() {
  */
 function fullscreen() {
 	return document.fullscreen ||
-            document.webkitIsFullScreen ||
-            document.mozFullScreen ||
-			false;
+           document.webkitIsFullScreen ||
+           document.mozFullScreen ||
+		   false;
 }
 {% endhighlight %}
 
-####6.全屏状态改变事件：`fullscreenchange`####
+###2\.6 全屏状态改变事件：`fullscreenchange`###
 
 该事件要绑定在 *document* 上，该事件仅在全屏状态改变时触发，默认没有任何动作。
 
@@ -174,7 +174,7 @@ $( document ).bind(
 {% endhighlight %}
 
 
-三、全屏样式设置
+3\. 全屏样式设置
 ----------------
 
 标准中，通过 `:fullscreen` 伪类对全屏的元素进行样式定义。
@@ -182,18 +182,18 @@ $( document ).bind(
 默认情况下，浏览器只会简单地将元素设置为全屏显示。如果该元素全屏后，高度比屏幕还高，超出的部分将会被隐藏。为了将超出部分可以滚动显示，最顶层全屏显示的元素要特别设置：
 
 {% highlight css %}
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
+position : fixed;
+top      : 0;
+left     : 0;
+width    : 100%;
+height   : 100%;
 overflow : auto;
 {% endhighlight %}
 
 一般情况下，要全屏显示的元素是不能像上面这样设置的。那么我们可以变通下，设置一个 `<div/>`，包围要全屏的元素，然后将这个 `<div/>` 设置为全屏，上面的样式定义就可以定义在这个 `<div/>` 上，相应的，`:fullscreen` 将会作用在这个 `<div/>` 上。这样，过长的元素就可以在这个包围层内滚动显示。
 
 
-四、特别注意
+4\. 特别注意
 ------------
 
 - 目前 FireFox 10、Safari 5.1+、Chrome 15+ 支持全屏
@@ -208,7 +208,7 @@ overflow : auto;
 - `ESC` 键不同系统功能不同。目前发现点击 `ESC` 退出全屏时，mac系统不会再额外触发键盘事件，但是win7系统下出发 `fullscreenchange` 事件后还会立马触发键盘事件，因此如果还有不希望被触发的键盘事件，可以设置一个监视变量，在很短时间后再修改监视变量，以错过这个立马执行的时间。
 
 
-五、未涉及功能
+5\. 未涉及功能
 --------------
 
 - iframe 元素的 `allowfullscreen` 属性
@@ -216,7 +216,7 @@ overflow : auto;
 - 具体其他细节可以参考 [W3 草案][1]
 
 
-六、总结
+6\. 结语
 --------
 
 Fullscreen API 毕竟目前只是草案，尚未形成正式的标准，况且各个浏览器的实现情况也不完全相同，甚至细节上的实现差别更可能引发预想不到的问题。但作为渐进增强方式使用的新功能，能够极大的增强用户体验。仍要根据规范的完善，不断改进我们的代码。
