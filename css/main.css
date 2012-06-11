@@ -6,7 +6,7 @@
  */
 
 /* reset */
-body{padding:0 1em 1em;margin:0;color:#222;font:95%/1.7 tahoma,arial,sans-serif;background:#f1f1f1;}
+body{padding:0 1em 1em;margin:0;color:#222;font:95%/1.6 Helvetica,arial,freesans,clean,sans-serif;background:#f1f1f1;}
 
 time{font-size:13px;color:#999;}
 a, a code{color:#246d45;text-decoration:none;}
