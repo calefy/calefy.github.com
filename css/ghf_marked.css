@@ -58,7 +58,7 @@ hr {
 p {color:#111;}
 
 pre, code {
-	font-family: Monaco, Consolas, "Andale Mono", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+	font-family: "Bitstream Vera Sans Mono", Courier, monospace, Consolas;
 }
 .highlight pre, pre {
 	background-color:#fefefe;
@@ -69,7 +69,7 @@ pre, code {
 	-moz-border-radius:3px;
 	-webkit-border-radius:3px;
 	padding:6px 10px;
-	font-size:98%;
+	font-size:100%;
 }
 
 
@@ -83,7 +83,7 @@ code {
 	-webkit-border-radius:3px;
 	margin:0 2px;
 	padding:2px 5px;
-	font-size:93%;
+	font-size:100%;
 }
 
 pre>code
