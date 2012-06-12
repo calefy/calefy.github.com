@@ -2,7 +2,7 @@
 layout: post
 title: Chrome中滚动条透明原因及解决
 category: css
-tags: [ chrome bug, toolbar opacity ]
+tags: [ chrome bug, scrollbar opacity ]
 ---
 
 {{ page.title }}
