@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Jekyll建站之旅
+summary: 本来想给别人一个jekyll建站的0基础教程，不过在查找相关资料以便描述得更准确的时候发现了很多人已经写过了，而且很好，于是就偷懒了。简单的写了下相关的知识点，以及一些自己想要扩展功能的心得，文章中链接了我认为不错的教程，希望能帮你少走弯路。
 category: jekyll
 tags: [jekyll, tutorial]
 ---

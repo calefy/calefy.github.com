@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Chrome中滚动条透明原因及解决
+summary: 浮层中的滚动条在 Chrome （版本号是19）上会变透明，而且整个滚动条的颜色都跟着变化了。导致问题的原因很简单，只是因为产生滚动条的元素的上层元素中设置了半透明。应该是Chrom一个不常见的bug吧。
 category: css
 tags: [ chrome bug, scrollbar opacity ]
 ---

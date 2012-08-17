@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 在vim中设置markdown语法高亮
+summary: 在vim中设置markdown语法高亮是一个不错的选择，但是在google中搜索到的很多都是比较老的设置方式，甚至vim插件下载页面都是一个旧的版本。这里总结下我的修改过程，以帮助像我一样纠结的人。
 categories: [vim, jekyll]
 tags: [vim, markdown]
 ---
@@ -8,7 +9,7 @@ tags: [vim, markdown]
 {{ page.title }}
 ================
 
-在vim中设置markdown语法高亮是一个不错的选择，但是在google中搜索到的很多都是比较老的设置方式，甚至vim插件下载页面都是一个旧的版本。这里总结下我的修改过程，以帮助像我一样纠结的人。
+{{ page.summary }}
 
 
 安装插件

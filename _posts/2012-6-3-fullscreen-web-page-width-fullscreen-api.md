@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Fullscreen API 全屏显示网页
+summary: Fullscreen API 可以实现网页上某个部分的全屏显示。如果页面上有想让读者看更大的内容，这个API将是你的不二选择，本站的文章都可以全屏显示。它只有有限的几个方法和属性，但浏览器的实现和表现上还是有差别的，本文就将这个API和实际中遇到的问题一一列出。
 category: javascript
 tags: [ javascript, fullscreen ]
 ---
