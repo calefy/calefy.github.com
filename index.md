@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: index 
 title: Calefy
 ---
 
@@ -16,6 +16,5 @@ title: Calefy
 ----
 
 {% endfor %}
-
 
 
