@@ -1,0 +1,279 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>mine sweeper</title>
+	<style type="text/css">
+	body{background-color:#eee;}
+	#options{padding:20px;background-color:#eee;}
+
+	#canvas{display:inline-block;*display:inline;*zoom:1;margin:30px;border-width:3px;border-style:solid;border-color:#999 #fff #fff #999;}
+	#canvas a{display:block;float:left;width:25px;height:25px;text-decoration:none;text-align:center;font-weight:bold;font-size:12px;line-height:25px;cursor:default;border-width:2px;border-style:solid;border-color:#fff #999 #999 #fff;background-color:#ccc; }
+	#canvas a:active,
+	#canvas a.ok,
+#canvas a.flag{border-color:#999 #ccc #ccc #999;}
+
+	</style>
+</head>
+<body>
+	<h2>mine sweeper</h2>
+
+	<!--操作-->
+	<ul id="options">
+		<li><label>行：</label><input id="row" name="" type="text" value="10"/></li>
+		<li><label>列：</label><input id="col" name="" type="text" value="10"/></li>
+		<li><label>雷：</label><input id="mine" name="" type="text" value="20"/></li>
+		<li><input type="button" value="开始" id="begin" /></li>
+	</ul>
+
+	<!--实际操作区域-->
+	<div id="canvas">
+		<!--
+		<a href="#"></a>
+		<a href="#"></a>
+		<a href="#"></a>
+		<a href="#"></a>
+		<a href="#"></a>
+		<br/>
+		<a href="#"></a>
+		<a href="#"></a>
+		<a href="#"></a>
+		<a href="#"></a>
+		<a href="#"></a>
+		-->
+	</div>
+
+	<script type="text/javascript" src="/js/jquery-1.8.1.min.js"></script>
+	<script type="text/javascript">
+	var MineSweeper = function (config) {
+		$.extend(this,
+			{
+				'container': '#canvas',
+				'row': 10,
+				'col': 10,
+				'mineNumber': 20
+			},
+			config);
+
+		this._init();
+	};
+	MineSweeper.VALUE_MINE = -1;
+	MineSweeper.prototype._init = function () {
+		this.container = $(this.container);
+		this.metricsData = [];
+		
+		// 生成雷区对应的矩阵
+		this.generateMetricsData();
+		
+		// 用矩阵绘制
+		this.drawMineArea(this.metricsData);
+
+		// 注册事件
+		this.container
+			.undelegate()
+			.delegate('a', 'click contextmenu', $.proxy(this.onMousedown, this));
+		
+	};
+
+	/**
+	 * 点击事件
+	 */
+	MineSweeper.prototype.onMousedown = function (evt) {
+		var target = $(evt.currentTarget),
+			pos = target.data('index').split(','),
+			i = pos[0] - 0,
+			j = pos[1] - 0,
+			v = this.getCellData(i, j);
+
+		switch (evt.type) {
+		// 左键点击
+		case 'click':
+			this.setCellData(i, j, {'status': 1});
+			target.addClass('ok');
+			if (v.value >= 0) {
+				target.text(v.value ? v.value : '');
+			}
+			else {
+				this.showAll();
+				alert('Boom!!! :(')
+			}
+			break;
+		// 右键点击
+		case 'contextmenu':
+			this.setCellData(i, j, {'status': 2});
+			target.addClass('flag');
+			target.text('F');
+			break;
+		}
+
+		// 检查是否胜利
+		this.checkWin();
+
+		evt.preventDefault();
+		evt.stopPropagation();
+	};
+
+	/**
+	 * 生成矩阵数据
+	 */
+	MineSweeper.prototype.generateMetricsData = function () {
+		var row = this.row, col = this.col, mineNum = this.mineNumber,
+
+			mineMap = {},
+			mineMapKey,
+			i, j, mineRow, mineCol;
+		
+		// 随机排布雷
+		for (i = 0; i < mineNum; i++) {
+			do {
+				mineRow = Math.round(Math.random() * (row - 1));
+				mineCol = Math.round(Math.random() * (col - 1));
+				mineMapKey = mineRow + ',' + mineCol;
+			} while (mineMap[mineMapKey])
+			mineMap[mineMapKey] = true;
+
+			this.setCellData(mineRow, mineCol, {'value': MineSweeper.VALUE_MINE});
+
+			// 周围元素累加雷数
+			this.updataMineAroundValue(mineRow, mineCol);
+		}
+	};
+
+	/**
+	 * 设置一个区域内容
+	 * @param {Number} i 行坐标
+	 * @param {Number} j 纵坐标
+	 * @param {Object} v 设置的值
+	 */
+	MineSweeper.prototype.setCellData = function (i, j, v) {
+		var data = this.getCellData(i, j);
+
+		$.extend(data, v);
+	};
+	/**
+	 * 得到一个元素的值
+	 */
+	MineSweeper.prototype.getCellData = function (i, j) {
+		var data = this.metricsData || [];
+		
+		data[i] = data[i] || [];
+		data[i][j] = data[i][j] ||
+					{
+						'status': 0,     // 显示状态，0：隐藏，1：打开，2：插旗
+						'value': 0       // -1表示元素为雷，否则为周围雷的个数
+					};
+
+		this.metricsData = data;
+
+		return data[i][j];
+	};
+	
+	/**
+	 * 更新雷元素周围的数据
+	 */
+	MineSweeper.prototype.updataMineAroundValue = function (i, j) {
+		var testArr = [],
+			me = this,
+			index, x, y, v,
+			// 这里面this为window
+			add = function (i, j) {
+				if (i >= 0 && i < me.row &&
+					j >= 0 && j < me.col) {
+					testArr.push([i,j]);
+				}
+			};
+		
+		// 探测周围8个元素
+		add(i - 1, j - 1);
+		add(i - 1, j);
+		add(i - 1, j + 1);
+
+		add(i, j - 1);
+		add(i, j + 1);
+
+		add(i + 1, j - 1);
+		add(i + 1, j);
+		add(i + 1, j + 1);
+
+		// 把可用的累加1
+		for (index in testArr) {
+			x = testArr[index][0];
+			y = testArr[index][1];
+
+			v = this.getCellData(x, y).value;
+			
+			if (v >= 0) {
+				this.setCellData(x, y, {'value': v + 1});	
+			}
+		}
+	};
+
+	/**
+	 * 绘制
+	 */
+	MineSweeper.prototype.drawMineArea = function (metrics) {
+		var rows = [], cols = [],
+			i, j, v;
+
+		for (i = 0; i < this.row; i++) {
+			for (j = 0; j < this.col; j++) {
+				cols.push('<a href="#" data-index="' + i + ',' + j + '"></a>');
+			}
+			rows.push(cols.join(''));
+			cols = [];
+		}
+
+		this.container.html(rows.join('<br/>'));
+	};
+
+	MineSweeper.prototype.showAll = function () {
+		var me = this;
+
+		this.container.find('a').each(function () {
+			var target = $(this),
+				pos = target.data('index').split(','),
+				i = pos[0] - 0,
+				j = pos[1] - 0,
+				v = me.getCellData(i, j);
+			
+			target.addClass('ok');
+			if (v.value >= 0) {
+				target.text(v.value ? v.value : '');
+			}
+			else {
+				target.text('*');
+			}
+
+		});
+	};
+	MineSweeper.prototype.checkWin = function () {
+		var me = this,
+			allRight = false;
+
+		if (this.container.find('a.ok,a.flag').length === this.row * this.col) {
+			this.container.find('a.flag').each(function () {
+				var target = $(this),
+					pos = target.data('index').split(','),
+					i = pos[0] - 0,
+					j = pos[1] - 0,
+					v = me.getCellData(i, j);
+				
+
+			});
+		}
+	};
+
+
+	$('#begin').click(function (e) {
+		var m = new MineSweeper(
+			{
+				'row': $('#row').val() - 0 || 10,
+				'col': $('#col').val() - 0 || 10,
+				'mineNumber': $('#mine').val() - 0 || 30
+			}
+		);
+	});
+
+	</script>
+</body>
+</html>
