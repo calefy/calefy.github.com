@@ -2,77 +2,115 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>mine sweeper</title>
+	<title>扫雷</title>
 	<style type="text/css">
 	body{background-color:#eee;}
-	#options{padding:20px;background-color:#eee;}
+	div.l{float:left;width:280px;margin-right:15px;}
+	ul{list-style:none;margin:0;padding:0;background-color:#eee;}
+	li{margin:8px;}
+	label{margin-right:10px;}
+	dl{font-size:12px;margin-top:20px;}
+	dd{margin:5px 10px;}
 
-	#canvas{display:inline-block;*display:inline;*zoom:1;margin:30px;border-width:3px;border-style:solid;border-color:#999 #fff #fff #999;}
-	#canvas a{display:block;float:left;width:25px;height:25px;text-decoration:none;text-align:center;font-weight:bold;font-size:12px;line-height:25px;cursor:default;border-width:2px;border-style:solid;border-color:#fff #999 #999 #fff;background-color:#ccc; }
+	#canvas.mines{display:inline-block;*display:inline;*zoom:1;border-width:3px;border-style:solid;border-color:#999 #fff #fff #999;}
+	#canvas a{display:block;float:left;width:25px;height:25px;text-decoration:none;text-align:center;font-weight:bold;font-size:110%;line-height:25px;cursor:default;border-width:2px;border-style:solid;border-color:#fff #999 #999 #fff;background-color:#ccc; }
 	#canvas a:active,
-	#canvas a.ok,
-#canvas a.flag{border-color:#999 #ccc #ccc #999;}
+	#canvas .ok,
+	#canvas .flag{border-color:#999 #ccc #ccc #999;}
 
 	</style>
 </head>
 <body>
-	<h2>mine sweeper</h2>
+	<h2>扫雷</h2>
 
 	<!--操作-->
-	<ul id="options">
-		<li><label>行：</label><input id="row" name="" type="text" value="10"/></li>
-		<li><label>列：</label><input id="col" name="" type="text" value="10"/></li>
-		<li><label>雷：</label><input id="mine" name="" type="text" value="20"/></li>
-		<li><input type="button" value="开始" id="begin" /></li>
-	</ul>
+	<div class="l">
+		<ul id="options">
+			<li><label>行数：</label><input id="row" name="" type="text" value="10"/></li>
+			<li><label>列数：</label><input id="col" name="" type="text" value="10"/></li>
+			<li><label>雷数：</label><input id="mine" name="" type="text" value="20"/></li>
+			<li><input type="button" value="开局" id="begin" /></li>
+		</ul>
+
+		<dl>
+			<dt>玩法：</dt>
+			<dd>1. 左键单击显示结果，右键标记小旗</dd>
+			<dd>2. 会自动弹出结果，如果没有结果，说明有些标记是错误的</dd>
+			<dd>3. 点击按钮“开局”会重新开始一局</dd>
+		</dl>
+	</div>
 
 	<!--实际操作区域-->
-	<div id="canvas">
-		<!--
-		<a href="#"></a>
-		<a href="#"></a>
-		<a href="#"></a>
-		<a href="#"></a>
-		<a href="#"></a>
-		<br/>
-		<a href="#"></a>
-		<a href="#"></a>
-		<a href="#"></a>
-		<a href="#"></a>
-		<a href="#"></a>
-		-->
-	</div>
+	<div id="canvas"></div>
+
+
 
 	<script type="text/javascript" src="/js/jquery-1.8.1.min.js"></script>
 	<script type="text/javascript">
+	/*
+		Class MineSweeper
+			generateMetricsData() ------ 根据行列雷数生成随机矩阵雷区
+		    isWin() -------------------- 是否获胜
+			setCellData(i, j, v) ------- 设置某个区块内容值
+			getCellData(i, j) ---------- 得到某个区块内容值
+			getMetricsData() ----------- 得到所有雷区矩阵数据
+
+			_init()
+			updateValueOfMineAround(i, j) 更新雷周围区域的计数
+			showAroundEmpty(i, j)         显示空块周围区域的空块
+			showResult()                  显示结果
+			drawMineArea()                绘制雷区
+			onMousedown(evt)              处理点击事件
+	*/
+	/**
+	 * @constructor
+	 *
+	 * 1. 在 row*col 的区域内随机布置指定的雷数
+	 * 2. 每随机生成一个雷的位置，遍历周边8个区域，更新周边的提示数值
+	 * 3. 绘制矩阵，监视每个雷区的左右点击事件
+	 */
 	var MineSweeper = function (config) {
 		$.extend(this,
 			{
-				'container': '#canvas',
-				'row': 10,
-				'col': 10,
-				'mineNumber': 20
+				'container':  '#canvas', // 雷区容器
+				'row':		  10,        // 要布置的雷区的行数
+				'col':        10,        // 要布置的雷区的列数
+				'mineNumber': 20,        // 雷区中的雷的数量
+				'openClass':  'ok',      // 打开的区块要添加的类名
+				'flagClass':  'flag'     // 插旗标的区块要添加的类名
 			},
 			config);
 
 		this._init();
 	};
-	MineSweeper.VALUE_MINE = -1;
+	MineSweeper.VALUE_MINE   = -1; // 区块中是雷
+	MineSweeper.VALUE_NULL   = 0;  // 区块为空
+	MineSweeper.STATUS_CLOSE = 0;  // 区块的状态是“未打开”
+	MineSweeper.STATUS_OPEN  = 1;  // 区块的状态是“已打开”
+	MineSweeper.STATUS_FLAG  = 2;  // 区块的状态是“插旗标”
+
+	/**
+	 * 初始化
+	 */
 	MineSweeper.prototype._init = function () {
+		// 检测雷数比例
+		if (this.mineNumber / (this.row * this.col) > 0.8) {
+			alert('80%以上的区域都是雷。\n雷数太多了！');
+			return;
+		}
+
 		this.container = $(this.container);
-		this.metricsData = [];
 		
 		// 生成雷区对应的矩阵
 		this.generateMetricsData();
 		
 		// 用矩阵绘制
-		this.drawMineArea(this.metricsData);
+		this.drawMineArea(this.getMetricsData());
 
 		// 注册事件
 		this.container
 			.undelegate()
 			.delegate('a', 'click contextmenu', $.proxy(this.onMousedown, this));
-		
 	};
 
 	/**
@@ -83,34 +121,71 @@
 			pos = target.data('index').split(','),
 			i = pos[0] - 0,
 			j = pos[1] - 0,
-			v = this.getCellData(i, j);
+			v = this.getCellData(i, j),
+			isOver;
 
 		switch (evt.type) {
 		// 左键点击
 		case 'click':
-			this.setCellData(i, j, {'status': 1});
-			target.addClass('ok');
-			if (v.value >= 0) {
-				target.text(v.value ? v.value : '');
+			// 空
+			if (v.value === MineSweeper.VALUE_NULL) {
+				this.showAroundEmpty(i, j);
 			}
 			else {
-				this.showAll();
-				alert('Boom!!! :(')
+				this.setCellData(i, j, {'status': MineSweeper.STATUS_OPEN});
+				target.addClass(this.openClass);
+
+				// 数字
+				if (v.value > MineSweeper.VALUE_NULL) {
+					target.text(v.value);
+				}
+				// 雷
+				else {
+					this.showResult();
+					isOver = true;
+					alert('Boom!!! :(')
+				}
 			}
+			
 			break;
 		// 右键点击
 		case 'contextmenu':
-			this.setCellData(i, j, {'status': 2});
-			target.addClass('flag');
-			target.text('F');
+			if (v.status === MineSweeper.STATUS_FLAG) {
+				target.text('').removeClass(this.flagClass);
+				this.setCellData(i, j, {'status': MineSweeper.STATUS_CLOSE});
+			}
+			else {
+				this.setCellData(i, j, {'status': MineSweeper.STATUS_FLAG});
+				target.html('&#9873;').addClass(this.flagClass);
+			}
 			break;
 		}
 
 		// 检查是否胜利
-		this.checkWin();
+		if (!isOver && this.isWin()) {
+			alert('Congratulations!');
+		}
 
 		evt.preventDefault();
 		evt.stopPropagation();
+	};
+
+	/**
+	 * 绘制初始雷区地图
+	 */
+	MineSweeper.prototype.drawMineArea = function (metrics) {
+		var rows = [], cols = [],
+			i, j, v;
+
+		for (i = 0; i < this.row; i++) {
+			for (j = 0; j < this.col; j++) {
+				cols.push('<a href="#" data-index="' + i + ',' + j + '"></a>');
+			}
+			rows.push(cols.join(''));
+			cols = [];
+		}
+
+		this.container.html(rows.join('<br/>'));
 	};
 
 	/**
@@ -135,7 +210,7 @@
 			this.setCellData(mineRow, mineCol, {'value': MineSweeper.VALUE_MINE});
 
 			// 周围元素累加雷数
-			this.updataMineAroundValue(mineRow, mineCol);
+			this.updateValueOfMineAround(mineRow, mineCol);
 		}
 	};
 
@@ -152,31 +227,41 @@
 	};
 	/**
 	 * 得到一个元素的值
+	 * @param {Number} i 行坐标
+	 * @param {Number} j 纵坐标
+	 * @return {Object} 区块的值信息
 	 */
 	MineSweeper.prototype.getCellData = function (i, j) {
-		var data = this.metricsData || [];
+		var data = this.getMetricsData();
 		
 		data[i] = data[i] || [];
 		data[i][j] = data[i][j] ||
 					{
-						'status': 0,     // 显示状态，0：隐藏，1：打开，2：插旗
-						'value': 0       // -1表示元素为雷，否则为周围雷的个数
+						'status': MineSweeper.STATUS_CLOSE,
+						'value':  MineSweeper.VALUE_NULL
 					};
 
-		this.metricsData = data;
-
 		return data[i][j];
+	};
+
+	/**
+	 * 得到矩阵数组
+	 * @return {Array} 矩阵数据数组
+	 */
+	MineSweeper.prototype.getMetricsData = function () {
+		return this.metricsData = this.metricsData || [];
 	};
 	
 	/**
 	 * 更新雷元素周围的数据
+	 * @param {Number} i 雷所在位置的行坐标
+	 * @param {Number} j 雷所在位置的列坐标
 	 */
-	MineSweeper.prototype.updataMineAroundValue = function (i, j) {
+	MineSweeper.prototype.updateValueOfMineAround = function (i, j) {
 		var testArr = [],
 			me = this,
-			index, x, y, v,
-			// 这里面this为window
-			add = function (i, j) {
+			index, x, y, v, 
+			add = function (i, j) { // 这里面this为window
 				if (i >= 0 && i < me.row &&
 					j >= 0 && j < me.col) {
 					testArr.push([i,j]);
@@ -209,24 +294,44 @@
 	};
 
 	/**
-	 * 绘制
+	 * 显示周围的空格
+	 * @param {Number} i 区块行坐标
+	 * @param {Number} j 区块纵坐标
 	 */
-	MineSweeper.prototype.drawMineArea = function (metrics) {
-		var rows = [], cols = [],
-			i, j, v;
-
-		for (i = 0; i < this.row; i++) {
-			for (j = 0; j < this.col; j++) {
-				cols.push('<a href="#" data-index="' + i + ',' + j + '"></a>');
-			}
-			rows.push(cols.join(''));
-			cols = [];
+	MineSweeper.prototype.showAroundEmpty = function (i, j) {
+		if (i < 0 || i >= this.row ||
+			j < 0 || j >= this.col) {
+			return;
 		}
 
-		this.container.html(rows.join('<br/>'));
+		var cur = this.getCellData(i, j),
+			data,
+			target;
+
+		if (cur.value === MineSweeper.VALUE_NULL &&
+			cur.status === MineSweeper.STATUS_CLOSE) {
+			// 处理当前元素
+			this.setCellData(i, j, {'status': MineSweeper.STATUS_OPEN});
+
+			target = this.container.find('a:eq(' + (i * this.col + j) + ')');
+			target.addClass(this.openClass).text('');
+
+			// 处理周边元素
+			this.showAroundEmpty(i - 1, j - 1);
+			this.showAroundEmpty(i - 1, j);
+			this.showAroundEmpty(i - 1, j + 1);
+			this.showAroundEmpty(i, j - 1);
+			this.showAroundEmpty(i, j + 1);
+			this.showAroundEmpty(i + 1, j - 1);
+			this.showAroundEmpty(i + 1, j);
+			this.showAroundEmpty(i + 1, j + 1);
+		}
 	};
 
-	MineSweeper.prototype.showAll = function () {
+	/**
+	 * 显示结果
+	 */
+	MineSweeper.prototype.showResult = function () {
 		var me = this;
 
 		this.container.find('a').each(function () {
@@ -236,34 +341,50 @@
 				j = pos[1] - 0,
 				v = me.getCellData(i, j);
 			
-			target.addClass('ok');
+			target.addClass(this.openClass);
 			if (v.value >= 0) {
 				target.text(v.value ? v.value : '');
 			}
 			else {
-				target.text('*');
+				target.html('&#10041;');
 			}
 
 		});
 	};
-	MineSweeper.prototype.checkWin = function () {
-		var me = this,
-			allRight = false;
 
-		if (this.container.find('a.ok,a.flag').length === this.row * this.col) {
-			this.container.find('a.flag').each(function () {
-				var target = $(this),
-					pos = target.data('index').split(','),
-					i = pos[0] - 0,
-					j = pos[1] - 0,
-					v = me.getCellData(i, j);
-				
+	/**
+	 * 检查棋盘是否已经获胜
+	 * @return {Boolean} allRight 获胜结果
+	 */
+	MineSweeper.prototype.isWin = function () {
+		var allRight = true,
+			data = this.getMetricsData(),
+			i, j, cell;
 
-			});
+		// 是否全部标记结束，且标旗者为雷
+		for (i = 0; i < this.row; i++) {
+			if (allRight) {
+				for (j = 0; j < this.col; j++) {
+					cell = this.getCellData(i, j);
+					if (cell.status === MineSweeper.STATUS_CLOSE || // 尚有未显示的项
+						(cell.status === MineSweeper.STATUS_FLAG &&
+						 cell.value !== MineSweeper.VALUE_MINE)) { // 标示为旗，但是实际不是雷
+						allRight = false;
+						break;
+					}
+				}
+			}
 		}
+
+		return allRight;
 	};
 
 
+
+
+	/*************************
+	---页面按钮事件绑定---
+	*************************/
 	$('#begin').click(function (e) {
 		var m = new MineSweeper(
 			{
@@ -272,6 +393,9 @@
 				'mineNumber': $('#mine').val() - 0 || 30
 			}
 		);
+		$('#canvas').addClass('mines');
+		
+		e.preventDefault();
 	});
 
 	</script>
