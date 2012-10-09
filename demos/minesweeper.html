@@ -62,6 +62,7 @@
 			drawMineArea()                绘制雷区
 			onMousedown(evt)              处理点击事件
 	*/
+
 	/**
 	 * @constructor
 	 *
@@ -316,15 +317,11 @@
 			target = this.container.find('a:eq(' + (i * this.col + j) + ')');
 			target.addClass(this.openClass).text('');
 
-			// 处理周边元素
-			this.showAroundEmpty(i - 1, j - 1);
+			// 处理周边元素，四角上的元素不予考虑
 			this.showAroundEmpty(i - 1, j);
-			this.showAroundEmpty(i - 1, j + 1);
 			this.showAroundEmpty(i, j - 1);
 			this.showAroundEmpty(i, j + 1);
-			this.showAroundEmpty(i + 1, j - 1);
 			this.showAroundEmpty(i + 1, j);
-			this.showAroundEmpty(i + 1, j + 1);
 		}
 	};
 
