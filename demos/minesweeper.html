@@ -11,7 +11,9 @@
 	label{margin-right:10px;}
 	dl{font-size:12px;margin-top:20px;}
 	dd{margin:5px 10px;}
+	#desc{clear:both;padding:20px 0;}
 
+	/* 雷区样式定义 */
 	#canvas.mines{display:inline-block;*display:inline;*zoom:1;border-width:3px;border-style:solid;border-color:#999 #fff #fff #999;}
 	#canvas a{display:block;float:left;width:25px;height:25px;text-decoration:none;text-align:center;font-weight:bold;font-size:110%;line-height:25px;cursor:default;border-width:2px;border-style:solid;border-color:#fff #999 #999 #fff;background-color:#ccc; }
 	#canvas a:active,
@@ -43,6 +45,46 @@
 	<!--实际操作区域-->
 	<div id="canvas"></div>
 
+	
+	<div id="desc">
+		<pre>
+算法概述
+========
+
+###数据###
+
+对整个雷区的操作就是对一个 row*col 大小的数组的操作，每个小区块对应数组中的一项，发生在小区块上的操作都是对数组中与之对应项的改变。
+
+数组标识的每个雷区有两个属性：value 和 status。
+
+* value 记录该区块的内容，分三种：空（0）、雷（-1）、提示数字（提示的数值）
+* status 记录该区块的状态，分三种：隐藏（0）、打开（1）、标旗（2）
+
+页面中的小区块，只存储在数组中的坐标值，方便在响应操作时找到数组中对应的项。
+
+
+###逻辑###
+
+**布雷**
+
+初始不用生成空的 row*col 大小的“二维数组”，只在需要用到其中某个元素时，再赋予这个元素值
+
+1. 随机一个row*col范围内的坐标作为雷，以该坐标通过固定算法组合成一个key
+2. 检查临时存数的map中是否有该key，如果有重复上面步骤，否则存入map中
+3. 为该坐标元素赋值其value属性为雷（即-1）
+4. 以得到的坐标为中心，遍历它周围的区块，如果是value属性不是雷，则累加1
+5. 重复上面步骤，直到指定数目的雷全部确定
+
+这样雷区对应的数组矩阵就生成好了，数组中没有值的对应到雷区上是空的。利用该数组生成雷区。
+
+**检查结果**
+
+点击任何一项时，如果踩到了雷，需要爆炸显示所有结果；如果不是雷，那么就都要检查是否成功。
+
+遍历数组中的每一项，遇到尚在隐藏的，或者虽然标旗并且其实际不是雷，则没有成功。
+
+		</pre>
+	</div>
 
 
 	<script type="text/javascript" src="/js/jquery-1.8.1.min.js"></script>
@@ -67,7 +109,7 @@
 	 * @constructor
 	 *
 	 * 1. 在 row*col 的区域内随机布置指定的雷数
-	 * 2. 每随机生成一个雷的位置，遍历周边8个区域，更新周边的提示数值
+	 * 2. 每随机生成一个雷的位置，遍历周边8个区域，累加周边的提示数值
 	 * 3. 绘制矩阵，监视每个雷区的左右点击事件
 	 */
 	var MineSweeper = function (config) {
@@ -200,6 +242,11 @@
 			i, j, mineRow, mineCol;
 		
 		// 随机排布雷
+		//   1. 行列分别随机一个数作为雷的坐标值
+		//   2. 将坐标值组合成“row,col”作为key值存储到map
+		//   3. 如果map中已经有了这个key值的定义，则重新随机坐标值
+		//   4. 重复上面步骤，直到坐标是非重复的
+		//   5. 得到一个雷的位置后，遍历周围8个位置，每个位置累加计数1
 		for (i = 0; i < mineNum; i++) {
 			do {
 				mineRow = Math.round(Math.random() * (row - 1));
