@@ -48,7 +48,7 @@
 	
 	<div id="desc">
 		<pre>
-算法概述
+扫雷算法概述
 ========
 
 ###数据###
@@ -186,7 +186,7 @@
 				else {
 					this.showResult();
 					isOver = true;
-					alert('Boom!!! :(')
+					alert('Boom!!! :(');
 				}
 			}
 			
@@ -252,7 +252,7 @@
 				mineRow = Math.round(Math.random() * (row - 1));
 				mineCol = Math.round(Math.random() * (col - 1));
 				mineMapKey = mineRow + ',' + mineCol;
-			} while (mineMap[mineMapKey])
+			} while (mineMap[mineMapKey]);
 			mineMap[mineMapKey] = true;
 
 			this.setCellData(mineRow, mineCol, {'value': MineSweeper.VALUE_MINE});
@@ -297,7 +297,8 @@
 	 * @return {Array} 矩阵数据数组
 	 */
 	MineSweeper.prototype.getMetricsData = function () {
-		return this.metricsData = this.metricsData || [];
+		this.metricsData = this.metricsData || [];
+		return this.metricsData;
 	};
 	
 	/**
@@ -308,7 +309,6 @@
 	MineSweeper.prototype.updateValueOfMineAround = function (i, j) {
 		var testArr = [],
 			me = this,
-			index, x, y, v, 
 			add = function (i, j) { // 这里面this为window
 				if (i >= 0 && i < me.row &&
 					j >= 0 && j < me.col) {
@@ -329,16 +329,15 @@
 		add(i + 1, j + 1);
 
 		// 把可用的累加1
-		for (index in testArr) {
-			x = testArr[index][0];
-			y = testArr[index][1];
+		$.each(testArr, function (i, val) {
+			var x = val[0],
+				y = val[1],
+				v = me.getCellData(x, y).value;
 
-			v = this.getCellData(x, y).value;
-			
 			if (v >= 0) {
-				this.setCellData(x, y, {'value': v + 1});	
+				me.setCellData(x, y, {'value': v + 1});	
 			}
-		}
+		});
 	};
 
 	/**
