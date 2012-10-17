@@ -14,7 +14,7 @@ a:hover{color:#208e51;text-decoration:underline;}
 code{font-family: "Bitstream Vera Sans Mono", Courier, monospace, Consolas;
 	padding:0 4px;border:1px solid #e8e8e8;background-color:#f6f6f6;
 	border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;}
-pre code{font-size:0.95em;line-height:120%;background:none;border:none;}
+pre code{line-height:100%;background:none;border:none;}
 h1{font-size:1.8em;margin:0.6em 0;}
 h2{font-size:1.4em;margin:0.3em 0;}
 h3{font-size:1.2em;margin:0.1em 0;}

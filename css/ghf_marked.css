@@ -58,7 +58,7 @@ hr {
 p {color:#111;}
 
 pre, code {
-	font-family: "Bitstream Vera Sans Mono", Courier, monospace, Consolas;
+	font-family: Consolas;
 }
 .highlight pre, pre {
 	background-color:#fefefe;
