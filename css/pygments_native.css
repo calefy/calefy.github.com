@@ -1,7 +1,7 @@
 pre,
 .highlight {color: #f8f8f2; padding:1.2em 1.2em 0.8em;margin:1em 0;overflow:auto;
 	border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;}
-pre{padding-top:0.8em;}
+pre{padding-top:0.8em;background:#272822;}
 .highlight{position:relative;background:#272822;}
 
 .highlight pre,
