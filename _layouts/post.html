@@ -2,24 +2,20 @@
 layout: default
 ---
 
-<!--相关文章 begin-->
-<aside id="related">
-  <h3>相关文章</h3>
-  <ul class="posts">
-	  {% for post in site.related_posts %}
-	  <li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
-	  {% endfor %}
-  </ul>
-</aside>
-<!--相关文章 end-->
-
 <article id="post">
 	<a href="#" class="icon-fullscreen r" title="点击全屏显示"></a>
-	<time date="{{ page.date }}">{{ page.date|date_to_long_string }}</time>
-	<div>
-		分类：{{ page.categories | join: ', ' }}
+	<div class="c9">
+		分类：
+			{%for cg in page.categories%}
+			<a href="/category.html#{{cg}}">{{cg}}</a>
+			{%if forloop.index < forloop.length %}
+			,
+			{%endif%}
+			{%endfor%}
 		&emsp;&emsp;&emsp;&emsp;
 		标签：{{ page.tags | join: ', ' }}
+		&emsp;&emsp;&emsp;&emsp;
+		<time date="{{ page.date }}">{{ page.date|date: "%Y-%m-%d"}}</time>
 	</div>
 
 	{{ content }}
@@ -27,8 +23,11 @@ layout: default
 	<div class="eof">-EOF-</div>
 
 	<hr />
+</article>
 
-	<!--Disqus begin-->
+
+<!--Disqus begin-->
+<div id="comment">
 	<div id="disqus_thread"></div>
 	<script type="text/javascript">
 		/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -42,8 +41,8 @@ layout: default
 	</script>
 	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 	<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-	<!--Disqus end-->
-</article>
+</div>
+<!--Disqus end-->
 
 <script src="/js/jquery-1.8.1.min.js"></script>
 <script src="/js/Fullscreen.js"></script>

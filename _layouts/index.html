@@ -7,11 +7,12 @@ layout: default
 </div>
 
 <aside class="aside">
-	<dl>
-		<dt><h2>分类</h2></dt>
-
-		{% for category in site.categories %}
-		<dd>{{ category[0] }}</dd>
-		{% endfor %}
-	</dl>
+	<div>
+		<h3>分类</h3>
+		<ul>
+			{% for category in site.categories %}
+			<li><a href="/category.html#{{category[0]}}">{{category[0]}} ({{category[1] | size}})</a></li>
+			{% endfor %}
+		</ul>
+	</div>
 </aside>

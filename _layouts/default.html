@@ -7,45 +7,46 @@
 		<link rel="stylesheet" href="/css/pygments_native.css" />
 	</head>
 	<body>
-		<div id="wrap">
-
-			<header id="header">
-				<div class="logo-area">
-					<h1><a href="/">Calefy</a></h1>
-					<p>
-						<a href="mailto:clfsw0201@gmail.com" target="_blank">Email me</a><br/>
-						<a href="https://github.com/calefy/calefy.github.com" target="_blank">Fork me on GitHub</a>
-					</p>
-				</div>
-				<p class="mark-words">记忆是时光的载体，时光是记忆的重量⋯⋯</p>
+		<header id="header">
+			<div class="header-info fix">
+				<h1><a href="/">Calefy</a></h1>
+				<p class="describe">前端点滴...</p>
 				<nav class="navigation">
 					<ul>
 						<li><a href="/">首页</a></li>
-						<li><a href="/archive.html">文章列表</a></li>
+						<li><a href="/archive.html">列表</a></li>
 						<!--<li><a href="/sitemap.txt">网站地图</a></li>-->
 						<li><a href="/atom.xml">RSS</a></li>
 					</ul>
 				</nav>
-			</header><!--/header end-->
+			</div>
+		</header><!--/header end-->
 
-			<section id="content">
-				{{content}}
-			</section><!--/content end-->
-
-
-			<footer id="footer">
-				<p class="l">&copy;2012 Calefy</p>
-				<p class="r">Powered by <a href="https://github.com/mojombo/jekyll" target="_blank">Jekyll</a></p>
-			</footer><!--/footer end-->
+		<section id="content" class="fix">
+			{{content}}
+		</section><!--/content end-->
 
 
+		<footer id="footer">
+			<p class="l">
+				&copy;2012 <a href="/">Calefy</a>
+				&emsp;&emsp;&emsp;
+				<a href="mailto:clfsw0201@gmail.com" target="_blank">Email me</a>
+				<span class="c9">|</span>
+				<a href="https://github.com/calefy/calefy.github.com" target="_blank">Fork me on GitHub</a>
+			</p>
+			<p class="r">Powered by <a href="https://github.com/mojombo/jekyll" target="_blank">Jekyll</a></p>
 			<!--getclicky begin-->
-			<a title="Real Time Analytics" href="http://getclicky.com/66550550" target="_blank"><img alt="Real Time Analytics" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
-			<script src="//static.getclicky.com/js" type="text/javascript"></script>
-			<script type="text/javascript">try{ clicky.init(66554389); }catch(e){}</script>
-			<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/66554389ns.gif" /></p></noscript>
+			<div class="c">
+				<a title="Real Time Analytics" href="http://getclicky.com/66550550" target="_blank"><img alt="Real Time Analytics" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
+				<script src="//static.getclicky.com/js" type="text/javascript"></script>
+				<script type="text/javascript">try{ clicky.init(66554389); }catch(e){}</script>
+				<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/66554389ns.gif" /></p></noscript>
+			</div>
 			<!--getclicky end-->
+		</footer><!--/footer end-->
 
-		</div>
+
+
 	</body>
 </html>
