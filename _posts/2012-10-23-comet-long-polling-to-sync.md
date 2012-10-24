@@ -19,9 +19,11 @@ tags: [Comet, 长连接, 浏览器同步]
 
 **Cookie** 可以被所有浏览器共享，支持广泛。但是它的缺陷也是很明显的，每个站点限制数目，且每个Cookie也被限制在4KB，每次传送到服务器等等。为了实现同步，只能不断轮询，实时与性能之间的反比关系，必然使这种同步不能真正完美。
 
-**localStorage** 作为一项HTML5涉及到的新技术，它实现的本地存储数据只能在同一个浏览器内共享，其他浏览器是不能访问到存储的内容的，更谈不上多浏览器之间的同步了。
+**localStorage** 作为一项HTML5涉及到的新技术，它实现的本地存储数据只能在同一个浏览器内同域名共享，其他浏览器是不能访问到存储的内容的，更谈不上多浏览器之间的同步了。
 
 尽管前端本地存储有很多种，但适合当前我们使用的技术，也是最被广泛使用的只有上面这两种。前端的种种限制下，实现同步肯定是不可能的，因此只能求助于后端服务器。
+
+关于HTML5的本地存储，不止localStorage一种，其他详细介绍及区别参见[HTML5 本地存储][3]。
 
 ### 服务器端推送
 
@@ -37,11 +39,19 @@ tags: [Comet, 长连接, 浏览器同步]
 
 ### 现实中应用
 
-开心网和人人的IM聊天都是用Ajax完成前后端的交互，这点可以在Chrome的开发者工具中的Network中监视到。
+开心网的IM聊天是用Ajax完成前后端的交互，这点可以在Chrome的开发者工具中的Network中监视到。实际上，im的服务器与主站不同域，因此将长连接Ajax请求放到了一个iframe中，再改变这个iframe的`document.domain`属性值与主站一致，这样就能操作主站中的方法。
 
-新浪微博的IM聊天也是用[Comet][1]实现，而且服务器用的是jetty。它采用JSONP与后端交互，多个Tab窗口就采用多个长连接。如下图是它的创建iframe部分代码：
+在web版的qq中，它采用和开心网同类的技术监听有其他qq登录的情况。这个iframe的路径是 http://d.web2.qq.com/proxy.html ，里面的代码没有压缩，可以清楚看到设置`document.domain`和用原生js封装ajax的方式，看这个会更明了其原生态的请求方式。
+
+人人网的IM聊天，只是简单地使用了localStorage，只能在同一浏览器不同窗口间实现同步，不支持不同浏览器的同步。
+
+web版的qq不允许
+
+新浪微博的IM聊天也是用[Comet][1]实现。它采用JSONP与后端交互，多个Tab窗口就采用多个长连接。如下图是它的创建iframe部分代码：
 
 ![新浪微博im聊天Comet创建iframe](/i/2012-10-23-01.png) <br/> **新浪微博im聊天Comet创建iframe（IE中使用htmlfile流）*
+
+人人的服务器采用的是nginx；微博的是jetty；开心网仍然在使用Apache；qq干脆不输出服务器类型，但 s.web2.qq.com 仍然暴露出用的是nginx。
 
 ### 总结
 
@@ -51,4 +61,5 @@ tags: [Comet, 长连接, 浏览器同步]
 
 
 [1]: http://www.ibm.com/developerworks/cn/web/wa-lo-comet/ "Comet：基于 HTTP 长连接的“服务器推”技术"
-[2]: http://blog.csdn.net/dojotoolkit/article/details/6614883 "本地存储的前世今生（一）"
+[2]: http://blog.csdn.net/dojotoolkit/article/details/6614883 "本地存储的前世今生"
+[3]: http://www.cnblogs.com/rainman/archive/2011/06/22/2086069.html "HTML5 的本地存储"
