@@ -45,8 +45,6 @@ tags: [Comet, 长连接, 浏览器同步]
 
 人人网的IM聊天，只是简单地使用了localStorage，只能在同一浏览器不同窗口间实现同步，不支持不同浏览器的同步。
 
-web版的qq不允许
-
 新浪微博的IM聊天也是用[Comet][1]实现。它采用JSONP与后端交互，多个Tab窗口就采用多个长连接。如下图是它的创建iframe部分代码：
 
 ![新浪微博im聊天Comet创建iframe](/i/2012-10-23-01.png) <br/> **新浪微博im聊天Comet创建iframe（IE中使用htmlfile流）*
