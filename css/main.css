@@ -13,7 +13,7 @@ time{font-size:13px;color:#999;}
 a, a code{color:#08c;text-decoration:none;}
 a:hover{color:#1982d1;text-decoration:underline;}
 code{font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
-	padding:2px 4px;background-color:#f9f9f9;border:1px solid #e8e8e8;
+	padding:1px 4px;background-color:#f9f9f9;border:1px solid #e8e8e8;
 	border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;}
 pre code{line-height:100%;background:none;border:none;}
 h1{font-size:2em;margin:0.8em 0;}
