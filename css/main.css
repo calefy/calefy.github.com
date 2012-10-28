@@ -90,4 +90,6 @@ ul{list-style:circle;}
 .icon-fullscreen.expand{background-position:0 -24px;}
 .icon-fullscreen.expand:hover{background-position:-24px -24px;}
 
+.page .prev{float:left;}
+.page .next{float:right;}
 

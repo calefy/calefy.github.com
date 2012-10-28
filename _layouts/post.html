@@ -23,6 +23,15 @@ layout: default
 	<div class="eof">-EOF-</div>
 
 	<hr />
+	<div class="page fix">
+		{%if page.previous%}
+		<span class="prev"><a href="{{page.previous.url}}">←《{{page.previous.title}}》</a></span>
+		{%endif%}
+		{%if page.next%}
+		<span class="next"><a href="{{page.next.url}}">《{{page.next.title}}》→</a></span>
+		{%endif%}
+	</div>
+	<hr />
 </article>
 
 
