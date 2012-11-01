@@ -60,4 +60,4 @@ void在javascript中是一个一元运算符。它总是舍弃运算数的值，
 })(this)
 {%endhighlight%}
 
-这样也能保证在这个子调用函数的作用域空间内，undefined确实是真正的undefined，而不是被定义成了别的值。
+这样也能保证在这个自调用函数的作用域空间内，undefined确实是真正的undefined，而不是被定义成了别的值。
