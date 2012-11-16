@@ -49,7 +49,7 @@ tags: [Comet, 长连接, 浏览器同步]
 
 ![新浪微博im聊天Comet创建iframe](/i/2012-10-23-01.png) <br/> **新浪微博im聊天Comet创建iframe（IE中使用htmlfile流）*
 
-人人的服务器采用的是nginx；微博的是jetty；开心网仍然在使用Apache；qq干脆不输出服务器类型，但 s.web2.qq.com 仍然暴露出用的是nginx。
+人人的服务器采用的是nginx；微博的是jetty；开心网返回的是Apache，但Apache显然不适用于大量的连接，不知是故意返回这个还是其他什么原因；qq干脆不输出服务器类型，但 s.web2.qq.com 仍然暴露出用的是nginx。
 
 ### 总结
 
