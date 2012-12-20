@@ -206,3 +206,28 @@ form 表单中很多元素都有 change 事件，当表单元素的值发生变�
 keydown、keyup 这两个键盘事件可以直接用 `event.keyCode` 取得键盘码值，keypress 要得到实际的字符码，需要 `event.keyCode || event.which`，然后可以用 `String.fromCharCode()` 获取实际的字符表示。最后，各个类型的浏览器及其不同版本可能会有些差别 :( 。
 
 中文的输入，测试中发现不同系统、不同版本都会有影响，无法用键盘事件来控制。
+
+
+## 补充
+
+2012-12-20:
+
+对于限制文本框中输入特定的字符，如某些字段只允许数字，还有一种方式，即用 keypress 的 charCode 获取键入的值，判断是否是要求输入的，而不再去获取输入框的值（keypress时，输入框内尚未赋值）。
+
+{%highlight javascript%}
+// 限制 input 输入框中只能输入数字
+input.bind('keypress', function (evt) {
+	// 取得键入的实际字符。
+	// 这里用 keyCode 替换 charCode，同样可以获得想要的值(参见前文)
+	var char = String.fromCharCode(evt.keyCode);
+
+	// 如果不是数字，就不允许输入
+	if (!/\d/.test(char)) {
+		evt.preventDefault();
+	}
+});
+{%endhighlight%}
+
+如果是键入，这个简单的处理函数可以很好地工作，但是一旦用输入法、粘贴、拖拽等，就不再能工作了。
+
+还是要回归到 input 事件。

@@ -27,3 +27,8 @@ if (this._runnedThisHandler && this._runnedThisHandler !== evt.type) {
 }
 this._runnedThisHandler = evt.type;
 {%endhighlight%}
+
+
+*后记*
+
+*看到有些参考资料上讲到，手机上的webkit，如果触发mousemove事件时页面变化了，就不再触发其他事件，这个bug应该就是类似的问题。*
