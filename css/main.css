@@ -26,6 +26,7 @@ ul{list-style:circle;}
 
 
 .l{float:left;}.r{float:right;}.c{clear:both;}
+.tac{text-align:center;}
 .fix{zoom:1;}
 .fix:after{content:"";display:block;height:0;clear:both;visibility:hidden;}
 .c9{color:#999;}
