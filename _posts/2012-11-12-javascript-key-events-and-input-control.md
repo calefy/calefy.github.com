@@ -231,3 +231,6 @@ input.bind('keypress', function (evt) {
 如果是键入，这个简单的处理函数可以很好地工作，但是一旦用输入法、粘贴、拖拽等，就不再能工作了。
 
 还是要回归到 input 事件。
+
+
+测试代码：<http://jsfiddle.net/calefy/uBYWH/>
