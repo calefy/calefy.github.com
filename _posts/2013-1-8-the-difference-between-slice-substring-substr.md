@@ -81,7 +81,7 @@ s.substr(-5,6);         // "orld!"
 
 ### 另一种理解
 
-对于负值，有一种解释说是负值加上整个串的长度，就是实际的索引位置。这个解释在参数的绝对值不大于整个字符串的长度时有效。基于这个想法，可以这样理解它们的内部对参数转换方式：
+对于负值，有一种解释说是负值加上整个串的长度，就是实际的索引位置。这个解释在参数的绝对值不大于整个字符串的长度时有效。基于这个想法，可以把这些方法的类似行为理解为先进行了一次大小转换：
 
 {%highlight javascript%}
 /**
@@ -91,38 +91,54 @@ s.substr(-5,6);         // "orld!"
 // 假设传入的两个参数是 a、b
 
 var len = this.length, // this指字符串，记录总长度
-	t;
+	convertNumber, t;
 
 // 1. 转换成数值类型
 a = a >> 0;
 b = b >> 0;
 
 // 2. 转换到有效范围内（不小于 0 ，不大于总长度）
+// - 第一个参数默认为 0，第二个参数默认为 length
+// - 参数如果是负数，表示从后向前数（负值 + 总长度），超出下标则认为是 0
+// - 参数如果是正数，超出下标则认为是 length
+convertNumber = function (n, length) {
+	if (n < 0) {
+		n += length;
+		if (n < 0) {
+			n = 0;
+		}
+	}
+	else if (n > 0 && n > length) {
+		n = length;
+	}
+	return n;
+};
 // slice()
 {
-	a = Math.max((a + len) % len, 0);
-	b = Math.max((b + len) % len, 0);
+	a = convertNumber(a, len);
+	b = convertNumber(b, len);
 }
 // substring() 负数都变为 0，再转换到len范围内，并排序
 {
-	a = Math.min(Math.max(a, 0), len - 1);
-	b = Math.min(Math.max(b, 0), len - 1);
+	a = convertNumber(Math.max(a, 0), len);
+	b = convertNumber(Math.max(b, 0), len);
 	if (a > b) { // 排序 
 		t = a;
 		a = b;
-		b = a;
+		b = t;
 	}
 }
-// substr()
+// substr() 第二个参数表示长度，只能为正
 {
-	a = Math.max((a + len) % len, 0);
-	b = Math.min(Math.max(b, 0), len); // 表示长度
+	a = convertNumber(a, len);
+	b = convertNumber(Math.max(b, 0), len - a);
 }
 
 // 3. 根据取值在0~len之间的 a 和 b，截取字符串
+// ...
 {%endhighlight%}
 
-字符串中的 `slice()` 与数组中的同名方法，目前我还没有发现有什么不同。`substring()` 就像它的名字一样，只是截取一段字符串，它的行为感觉更符合我对截取函数的理解，但是参杂了其他方法类似但不同的使用方式，反而显得格格不入了。无论哪种实现，更希望对于同类的问题提供一种思路，避免混淆。
+字符串中的 `slice()` 与数组中的同名方法类似。`substring()` 就像它的名字一样，只是截取一段字符串，它的行为感觉更符合我对截取函数的理解，但是参杂了其他方法类似但不同的使用方式，反而显得格格不入了。无论哪种实现，更希望对于同类的问题提供一种思路，避免混淆。
 
 
 **`substr()` 已经被废弃，不属于 ECMAScript 规范，不建议再使用。**
