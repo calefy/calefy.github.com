@@ -38,48 +38,79 @@ layout: default
 <!--Disqus begin-->
 <div id="comment">
 	<div id="disqus_thread"></div>
-	<script type="text/javascript">
-		/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-		var disqus_shortname = 'calefy'; // required: replace example with your forum shortname
-		/* * * DON'T EDIT BELOW THIS LINE * * */
-		(function() {
-			var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-			dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-		})();
-	</script>
 	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 	<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
 </div>
 <!--Disqus end-->
 
-<script src="/js/jquery-1.8.1.min.js"></script>
+<script src="/js/jquery-min.js"></script>
 <script src="/js/Fullscreen.js"></script>
 <script type="text/javascript">
-$( function() {
-	var icon = $( 'a.icon-fullscreen' ),
-		fullscreen = new Fullscreen( {
-					element: $( '#post' ),
-					noSafari: true,
-					callback: function ( isFullscreen ) {
-						if ( isFullscreen ) {
-							icon.addClass( 'expand' ).attr( 'title', 'ESC 退出全屏' );
-						}
-						else {
-							icon.removeClass( 'expand' ).attr( 'title', '点击全屏显示' );
-						}
-					}
-				} );
+$(function() {
+	var global = window;
 
-	if ( fullscreen.fullscreenEnabled ) {
-		icon.on( 'click', function() {
-			fullscreen.toggleFullscreen();
-			return false;
-		} );
-	}
-	else {
-		icon.hide();
-	}
-} );
+	// ============== Disqus 定义 ==============
+	(function() {
+		global.disqus_shortname = 'calefy';
+		$('<script type="text/javascript" async ' +
+		  'src="http://' + global.disqus_shortname + '.disqus.com/embed.js">' +
+		  '<\/script>').appendTo('head');
+	})();
+
+
+	// =============== 全屏显示 ==================
+	(function() {
+		var icon = $( 'a.icon-fullscreen' ),
+			fs, fsCallback;
+		
+		fsCallback = function(isFullscreen) {
+				if (isFullscreen) {
+					icon.addClass('expand').attr('title', 'ESC 退出全屏');
+				}
+				else {
+					icon.removeClass('expand').attr('title', '点击全屏显示');
+				}
+			};
+			
+		fs = new Fullscreen({
+				element: $('#post'),
+				noSafari: true,
+				callback: fsCallback
+			});
+
+		if (fs.fullscreenEnabled) {
+			icon.on('click', function() {
+				fs.toggleFullscreen();
+				return false;
+			});
+		}
+		else {
+			icon.hide();
+		}
+	})();
+
+
+	// ============== 目录提取 ===============
+	(function() {
+		// 设置无目录时，不显示
+		if (!parseInt('{{page.list}}', 10)) {
+			return;
+		}
+
+		var dom = $('<fieldset id="catalogue"><legend>目录</legend></fieldset>'),
+			count = 0;
+		
+		$('#post').find('h2,h3,h4,h5').each(function() {
+			var name = 'catalogue_' + count++;
+			dom.append('<div class="txt_' + this.tagName + '">' +
+				'<a href="#' + name + '">' +
+					this.innerHTML +
+				'</a></div>');
+			this.id = name;
+		});
+
+		dom.appendTo('body');
+	})();
+});
 </script>
 
