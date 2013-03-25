@@ -84,4 +84,4 @@ vim中markdown语法的高亮文件。高亮的配色效果和折叠一般，有
 
 [1]: http://www.sublimetext.com/ 'sublime'
 [2]: https://github.com/sickill/vim-monokai 'vim-monokai'
-[3]: http://localhost:4000/2012/03/01/set-vim-markdown-syntax-highlight.html 'vim-markdown语法高亮'
+[3]: /2012/03/01/set-vim-markdown-syntax-highlight.html 'vim-markdown语法高亮'
