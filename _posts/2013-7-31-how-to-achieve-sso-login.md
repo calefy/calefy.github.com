@@ -73,3 +73,27 @@ weibo 登录中的第 4 步，iframe 中跳转方式实现对跨域的访问，�
 
 据说 Google 在这点上是安全的，可惜身边没法翻墙，留待以后吧。
 
+
+************
+
+### 补记
+
+*2013-8-4
+
+周末有空折腾了一下翻墙，找到个超级好东西：[SmartHosts](https://smarthosts.googlecode.com/svn/trunk/hosts)，Youtube/Facebook/twitter... 都可以上了。
+
+Google 所有产品的登录都是通过 https://accounts.google.com/ 进行处理，基本流程如下：
+
+1. 在 Google 产品站点击“登录”，会跳转到 https://accounts.google.com/ServiceLogin 登录；
+2. 表单 post 提交到 https://accounts.google.com/ServiceLoginAuth 验证；
+3. 登录成功则直接通过 302 转到 https://accounts.google.com/CheckCookie，访问跨域产品的页面，一般是 accounts.hostname/accounts/SetSID，设置登录cookie；
+4. 页面跳转回登录来源页。
+
+针对不同的来源，具体处理上在第3步有些差别：
+
+  > - 如果登录来源是 *.google.com 或 youtube.com，则直接通过302指向 accounts.youtube.com/accounts/SetSID，之后该地址再转向到来源地址。
+  > - 如果登录来源是 *.google.com.hk，则返回200，通过 jsonp 请求 accounts.google.com.hk/accounts/SetSID 和 accounts.youtube.com/accounts/SetSID
+
+可以看到，基本原理是一样的，都是登录后，访问一下跨域的页面，完成登录信息的cookie设置。
+
+过程中通过修改 accounts.youtube.com 的 ip 指向，截取到了登录后的 /accounts/SetSID 链接，直接在一个新的浏览器中访问，是可以完成登录的。因此，Google 的 token 也不能保证这种截取。
