@@ -96,4 +96,4 @@ Google 所有产品的登录都是通过 https://accounts.google.com/ 进行处�
 
 可以看到，基本原理是一样的，都是登录后，访问一下跨域的页面，完成登录信息的cookie设置。
 
-过程中通过修改 accounts.youtube.com 的 ip 指向，截取到了登录后的 /accounts/SetSID 链接，直接在一个新的浏览器中访问，是可以完成登录的。因此，Google 的 token 也不能保证这种截取。
+过程中通过修改 accounts.youtube.com 的 ip 指向，截取到了登录后的 /accounts/SetSID 链接，直接在一个新的浏览器中访问，是可以完成登录的。因此，Google 的 token 也不能保证这种截取的安全性。
