@@ -82,6 +82,8 @@ weibo 登录中的第 4 步，iframe 中跳转方式实现对跨域的访问，�
 
 周末有空折腾了一下翻墙，找到个超级好东西：[SmartHosts](https://smarthosts.googlecode.com/svn/trunk/hosts)，Youtube/Facebook/twitter... 都可以上了。
 
+**Google SSO 实现方式**
+
 Google 所有产品的登录都是通过 https://accounts.google.com/ 进行处理，基本流程如下：
 
 1. 在 Google 产品站点击“登录”，会跳转到 https://accounts.google.com/ServiceLogin 登录；
